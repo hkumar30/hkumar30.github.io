@@ -14,10 +14,11 @@
 
     <link rel="stylesheet" href="bg/style.css">
     <link rel="stylesheet" type="text/css" href="def.css">
+
+    <link id="theme-style" rel="stylesheet" type="text/css" href="">
 </head>
 
 <body>
-    <!-- <div id="particles-js"></div> -->
     <section class="s1">
         <div class="main-container">
             <div class="greeting-wrapper">
@@ -43,10 +44,10 @@
                     <h5 style="text-align:center; line-height: 0"; >Personalize theme</h5>
 
                     <div id="theme-options-wrapper">
-                        <div class="theme-dot" id="light-mode"></div>
-                        <div class="theme-dot" id="dark-mode"></div>
-                        <div class="theme-dot" id="green-mode"></div>
-                        <div class="theme-dot" id="purple-mode"></div>
+                        <div data-mode="light" class="theme-dot" id="light-mode"></div>
+                        <div data-mode="dark" class="theme-dot" id="dark-mode"></div>
+                        <div data-mode="green" class="theme-dot" id="green-mode"></div>
+                        <div data-mode="purple" class="theme-dot" id="purple-mode"></div>
                     </div>
 
                     <p id="settings-note">*Theme options will be saved for <br>your next visit.</p>
@@ -79,7 +80,7 @@
                         <div class="post-preview">
                             <h6 class="post-title">Post Title</h6>
                             <p class="post-intro">Lorem ipsum dolor sit amet.</p>
-                            <a href="#">Read More</a>
+                            <a href="post/post_ffd.html">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -111,12 +112,7 @@
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script type="text/javascript" src="theme_switch.js"></script>
 
-    <script>
-        particlesJS.load('particles-js', 'bg/particles.json', function() {
-            console.log('callback - particles.js config loaded');
-        });
-    </script>
 </body>
 </html>
