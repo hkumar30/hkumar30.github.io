@@ -19,7 +19,12 @@
   font-weight: 600;
   color: var(--blue-pen);
   line-height: 1.4;
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s ease 0.1s, font-weight 0.3s ease 0.1s;
 }
+
+/* ── Handwriting reveal for current line ── */
 
 .title-line.current.writing .title-text {
   animation: handwritten-reveal 0.75s ease-out both;
@@ -40,10 +45,13 @@
   }
 }
 
-/* Struck-through lines (during animation) */
+/* ── Struck-through state (during cycling) ── */
+
 .title-line.struck {
   opacity: 0.55;
 }
+
+/* ── Scribble line (always in DOM for struck lines) ── */
 
 .scribble-svg {
   position: absolute;
@@ -54,6 +62,7 @@
   width: calc(100% + 8px);
   height: 14px;
   pointer-events: none;
+  z-index: 3;
 }
 
 .scribble-path {
@@ -61,6 +70,7 @@
   stroke-dashoffset: 0;
 }
 
+/* Drawing in (for current line) */
 .scribble-svg.animating .scribble-path {
   stroke-dasharray: 300;
   stroke-dashoffset: 300;
@@ -68,43 +78,70 @@
 }
 
 @keyframes scribble-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Retracting (when revealed) — erases the scribble right-to-left */
+.scribble-svg.retracting .scribble-path {
+  animation: scribble-retract 0.5s ease-in forwards;
+  animation-delay: calc(var(--reveal-i, 0) * 0.15s);
+}
+
+@keyframes scribble-retract {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -300; }
+}
+
+/* ── Highlight sweep (behind text) ── */
+
+.title-highlight {
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 28%;
+  bottom: 16%;
+  border-radius: 2px;
+  background: var(--highlighter-yellow);
+  z-index: 1;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: none;
+  pointer-events: none;
+}
+
+.title-highlight.active {
+  animation: highlight-sweep 0.45s ease-out forwards;
+  animation-delay: calc(var(--reveal-i, 0) * 0.15s + 0.25s);
+}
+
+@keyframes highlight-sweep {
+  from {
+    transform: scaleX(0);
+    opacity: 0.3;
+  }
   to {
-    stroke-dashoffset: 0;
+    transform: scaleX(1);
+    opacity: 1;
   }
 }
 
-/* Revealed state — all titles unscratch, full opacity, highlighted */
-.title-line.revealed {
-  opacity: 1;
-  animation: unscratch-pop 0.5s ease-out both;
-}
+/* ── Revealed state ── */
 
-.title-line.revealed:nth-child(1) { animation-delay: 0s; }
-.title-line.revealed:nth-child(2) { animation-delay: 0.12s; }
-.title-line.revealed:nth-child(3) { animation-delay: 0.24s; }
+.title-line.revealed {
+  opacity: 0.55;
+  animation: unscratch-pop 0.5s ease-out forwards;
+  animation-delay: calc(var(--reveal-i, 0) * 0.15s);
+}
 
 @keyframes unscratch-pop {
-  from {
-    opacity: 0.5;
-    transform: translateX(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  0%   { opacity: 0.55; transform: translateX(0); }
+  40%  { opacity: 0.7;  transform: translateX(-3px); }
+  100% { opacity: 1;    transform: translateX(0); }
 }
 
-.revealed-text {
+.title-line.revealed .title-text {
   font-weight: 700;
   color: var(--sharpie);
-  background: linear-gradient(
-    transparent 28%,
-    var(--highlighter-yellow) 28%,
-    var(--highlighter-yellow) 84%,
-    transparent 84%
-  );
-  padding: 0 8px;
-  border-radius: 2px;
 }
 
 @media (max-width: 768px) {

@@ -41,7 +41,6 @@ export default function TitleCycle({ active }) {
       if (idx >= TITLES.length) {
         setCurrentLine('');
         setShowCurrentScribble(false);
-        // Brief pause then unscratch all
         timerRef.current = setTimeout(() => {
           if (!mounted) return;
           setPhase('revealed');
@@ -86,26 +85,33 @@ export default function TitleCycle({ active }) {
 
   return (
     <div className="title-cycle" aria-label="Developer titles">
-      {lines.map((line) => (
+      {lines.map((line, i) => (
         <div
           key={line.id}
           className={`title-line ${isRevealed ? 'revealed' : 'struck'}`}
+          style={isRevealed ? { '--reveal-i': i } : undefined}
         >
-          <span className={`title-text ${isRevealed ? 'revealed-text' : ''}`}>
+          <span className="title-text">
             {line.text}
           </span>
-          {!isRevealed && (
-            <svg className="scribble-svg" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
-              <path
-                className="scribble-path"
-                d="M0,6 C20,2 40,10 60,5 C80,1 100,11 120,4 C140,9 160,2 180,7 C190,4 200,6 200,6"
-                fill="none"
-                stroke="var(--red-pen)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-            </svg>
-          )}
+          {/* Highlight sweep — only visible in revealed state */}
+          <span className={`title-highlight ${isRevealed ? 'active' : ''}`} />
+          {/* Scribble always in DOM; class drives draw-in vs retract */}
+          <svg
+            className={`scribble-svg ${isRevealed ? 'retracting' : ''}`}
+            viewBox="0 0 200 12"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              className="scribble-path"
+              d="M0,6 C20,2 40,10 60,5 C80,1 100,11 120,4 C140,9 160,2 180,7 C190,4 200,6 200,6"
+              fill="none"
+              stroke="var(--red-pen)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+          </svg>
         </div>
       ))}
 
