@@ -1,4 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="14" fill="#111"/>
-  <text x="32" y="43" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="28" fill="#fff">HK</text>
+  <!-- Notebook page background -->
+  <rect x="6" y="4" width="52" height="56" rx="3" fill="#fdf6e3" stroke="#444" stroke-width="2" stroke-linejoin="round" stroke-dasharray="0"/>
+  <!-- Ruled lines -->
+  <line x1="12" y1="18" x2="52" y2="18" stroke="#b0c4de" stroke-width="0.7" opacity="0.5"/>
+  <line x1="12" y1="28" x2="52" y2="28" stroke="#b0c4de" stroke-width="0.7" opacity="0.5"/>
+  <line x1="12" y1="38" x2="52" y2="38" stroke="#b0c4de" stroke-width="0.7" opacity="0.5"/>
+  <line x1="12" y1="48" x2="52" y2="48" stroke="#b0c4de" stroke-width="0.7" opacity="0.5"/>
+  <!-- Red margin line -->
+  <line x1="16" y1="4" x2="16" y2="60" stroke="#e06060" stroke-width="1" opacity="0.6"/>
+  <!-- Spiral binding holes -->
+  <circle cx="10" cy="12" r="2.2" fill="#ddd" stroke="#999" stroke-width="0.8"/>
+  <circle cx="10" cy="30" r="2.2" fill="#ddd" stroke="#999" stroke-width="0.8"/>
+  <circle cx="10" cy="48" r="2.2" fill="#ddd" stroke="#999" stroke-width="0.8"/>
+  <!-- Hand-drawn "HK" in blue pen style -->
+  <!-- H -->
+  <path d="M22 16 L22 42" stroke="#1a5fb4" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 29 Q28 27 34 29" stroke="#1a5fb4" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M34 16 L34 42" stroke="#1a5fb4" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- K -->
+  <path d="M40 16 L40 42" stroke="#1a5fb4" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 30 L52 17" stroke="#1a5fb4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M44 27 L53 42" stroke="#1a5fb4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Tiny underline scribble -->
+  <path d="M20 46 Q32 44 54 46" stroke="#e06060" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
 </svg>
