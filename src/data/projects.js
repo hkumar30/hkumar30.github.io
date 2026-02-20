@@ -39,7 +39,7 @@ export const projects = [
       live: 'https://splayer-game.netlify.app',
       github: 'https://github.com/hkumar30/Splayer',
     },
-    featured: false,
+    featured: true,
   },
   {
     id: 'yakuza',
@@ -53,6 +53,6 @@ export const projects = [
       live: 'https://yakuza-game.netlify.app',
       github: 'https://github.com/hkumar30/Yakuza',
     },
-    featured: false,
+    featured: true,
   },
 ];

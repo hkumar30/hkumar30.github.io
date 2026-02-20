@@ -11,7 +11,7 @@ export default function RoughButton({
   onClick,
   className = '',
   style = {},
-  roughness = 1.5,
+  roughness = 0.8,
   seed = 1,
   active = false,
   href,
@@ -41,9 +41,10 @@ export default function RoughButton({
     const rc = rough.svg(svg);
     const rect = rc.rectangle(2, 2, dims.w - 4, dims.h - 4, {
       roughness,
-      stroke: getCssVar('--black-pen'),
-      strokeWidth: 1.5,
+      stroke: getCssVar('--pencil'),
+      strokeWidth: 1,
       seed,
+      bowing: 1,
     });
     svg.appendChild(rect);
   }, [dims, roughness, seed, theme]);

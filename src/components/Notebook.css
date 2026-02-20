@@ -74,6 +74,10 @@
   background-position: 0 14px;
 }
 
+[data-theme='dark'] .notebook-page {
+  background-image: none;
+}
+
 /* ───── Margin line ───── */
 
 .notebook-margin {
