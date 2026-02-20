@@ -207,15 +207,87 @@ export function DoodleCodeSnippet({ width = 100, className = '', style = {} }) {
       style={style}
       aria-hidden="true"
     >
-      <text fontFamily="'JetBrains Mono', monospace" fontSize="5.5" fill="var(--pencil)">
-        <tspan x="2" y="8" fill="var(--blue-pen)" opacity="0.6">#include</tspan>
-        <tspan x="2" y="17" fill="var(--pencil)" opacity="0.5">template&lt;class T&gt;</tspan>
-        <tspan x="2" y="26" fill="var(--pencil)" opacity="0.5">T merge(T a, T b) {'{'}</tspan>
-        <tspan x="8" y="35" fill="var(--pencil)" opacity="0.4">if (a.empty())</tspan>
-        <tspan x="12" y="44" fill="var(--pencil)" opacity="0.4">return b;</tspan>
-        <tspan x="8" y="53" fill="var(--pencil)" opacity="0.35">swap(a, b);</tspan>
-        <tspan x="2" y="62" fill="var(--pencil)" opacity="0.3">{'}'}</tspan>
+      <text fontFamily="'JetBrains Mono', monospace" fontSize="5.5">
+        <tspan x="2" y="8" fill="var(--blue-pen)" opacity="0.7">#include</tspan>
+        <tspan x="2" y="17" fill="var(--pencil)" opacity="0.6">template&lt;class T&gt;</tspan>
+        <tspan x="2" y="26" fill="var(--pencil)" opacity="0.55">T merge(T a, T b) {'{'}</tspan>
+        <tspan x="8" y="35" fill="var(--pencil)" opacity="0.5">if (a.empty())</tspan>
+        <tspan x="12" y="44" fill="var(--pencil)" opacity="0.45">return b;</tspan>
+        <tspan x="8" y="53" fill="var(--pencil)" opacity="0.4">swap(a, b);</tspan>
+        <tspan x="2" y="62" fill="var(--pencil)" opacity="0.35">{'}'}</tspan>
       </text>
+    </svg>
+  );
+}
+
+export function DoodleFlowchart({ size = 72, className = '', style = {} }) {
+  return (
+    <svg
+      width={size}
+      height={size * 1.1}
+      viewBox="0 0 72 80"
+      fill="none"
+      className={className}
+      style={style}
+      aria-hidden="true"
+    >
+      {/* Start oval */}
+      <ellipse cx="36" cy="8" rx="16" ry="6" stroke="var(--pencil)" strokeWidth="1" fill="var(--highlighter-green)" />
+      <text x="36" y="10.5" textAnchor="middle" fontSize="5" fontFamily="'JetBrains Mono', monospace" fill="var(--black-pen)">n &gt; 0?</text>
+      {/* Arrow down */}
+      <path d="M36 14 L36 24" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" />
+      {/* Diamond (decision) */}
+      <path d="M36 24 L52 36 L36 48 L20 36 Z" stroke="var(--pencil)" strokeWidth="1" strokeLinejoin="round" fill="var(--highlighter-yellow)" />
+      <text x="36" y="38.5" textAnchor="middle" fontSize="4.5" fontFamily="'JetBrains Mono', monospace" fill="var(--black-pen)">left?</text>
+      {/* Yes branch */}
+      <path d="M20 36 L8 36 L8 58" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" />
+      <text x="13" y="33" fontSize="4" fontFamily="'Caveat', cursive" fill="var(--blue-pen)">Y</text>
+      <rect x="1" y="58" width="14" height="10" rx="1.5" stroke="var(--pencil)" strokeWidth="0.8" fill="var(--highlighter-blue)" />
+      <text x="8" y="65" textAnchor="middle" fontSize="4" fontFamily="'JetBrains Mono', monospace" fill="var(--black-pen)">rec(l)</text>
+      {/* No branch */}
+      <path d="M52 36 L64 36 L64 58" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" />
+      <text x="59" y="33" fontSize="4" fontFamily="'Caveat', cursive" fill="var(--red-pen)">N</text>
+      <rect x="57" y="58" width="14" height="10" rx="1.5" stroke="var(--pencil)" strokeWidth="0.8" fill="var(--highlighter-pink)" />
+      <text x="64" y="65" textAnchor="middle" fontSize="4" fontFamily="'JetBrains Mono', monospace" fill="var(--black-pen)">rec(r)</text>
+      {/* Merge arrows */}
+      <path d="M8 68 L8 75 L36 75 L64 75 L64 68" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" strokeDasharray="2 2" />
+    </svg>
+  );
+}
+
+export function DoodleLinkedList({ width = 110, className = '', style = {} }) {
+  return (
+    <svg
+      width={width}
+      height={width * 0.3}
+      viewBox="0 0 110 33"
+      fill="none"
+      className={className}
+      style={style}
+      aria-hidden="true"
+    >
+      {/* Node 1 */}
+      <rect x="2" y="8" width="20" height="14" rx="2" stroke="var(--pencil)" strokeWidth="1" fill="var(--highlighter-blue)" />
+      <text x="12" y="18" textAnchor="middle" fontSize="5.5" fontFamily="'JetBrains Mono', monospace" fill="var(--black-pen)">H</text>
+      {/* Arrow 1 */}
+      <path d="M22 15 L32 15" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" />
+      <path d="M30 12 L33 15 L30 18" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" fill="none" />
+      {/* Node 2 */}
+      <rect x="34" y="8" width="20" height="14" rx="2" stroke="var(--pencil)" strokeWidth="1" fill="var(--highlighter-green)" />
+      <text x="44" y="18" textAnchor="middle" fontSize="5.5" fontFamily="'JetBrains Mono', monospace" fill="var(--black-pen)">4</text>
+      {/* Arrow 2 */}
+      <path d="M54 15 L64 15" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" />
+      <path d="M62 12 L65 15 L62 18" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" fill="none" />
+      {/* Node 3 */}
+      <rect x="66" y="8" width="20" height="14" rx="2" stroke="var(--pencil)" strokeWidth="1" fill="var(--highlighter-yellow)" />
+      <text x="76" y="18" textAnchor="middle" fontSize="5.5" fontFamily="'JetBrains Mono', monospace" fill="var(--black-pen)">2</text>
+      {/* Arrow 3 */}
+      <path d="M86 15 L96 15" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" />
+      <path d="M94 12 L97 15 L94 18" stroke="var(--pencil)" strokeWidth="0.8" strokeLinecap="round" fill="none" />
+      {/* Null */}
+      <text x="102" y="18" textAnchor="middle" fontSize="5" fontFamily="'JetBrains Mono', monospace" fill="var(--red-pen)" opacity="0.7">nil</text>
+      {/* "head" label */}
+      <text x="12" y="6" textAnchor="middle" fontSize="4" fontFamily="'Caveat', cursive" fill="var(--pencil)">head</text>
     </svg>
   );
 }

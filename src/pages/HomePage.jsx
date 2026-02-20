@@ -10,6 +10,8 @@ import {
   DoodleBinaryTree,
   DoodleStack,
   DoodleCodeSnippet,
+  DoodleFlowchart,
+  DoodleLinkedList,
 } from '../components/Doodles';
 import './HomePage.css';
 
@@ -26,12 +28,14 @@ export default function HomePage() {
     <div className="home-page">
       {/* ── Hero ── */}
       <section className="hero-section">
-        {/* Algorithmic doodles — subtle background decoration */}
         <div className="hero-doodle-tree">
           <DoodleBinaryTree size={144} />
         </div>
         <div className="hero-doodle-code">
-          <DoodleCodeSnippet width={110} />
+          <DoodleCodeSnippet width={120} />
+        </div>
+        <div className="hero-doodle-flowchart">
+          <DoodleFlowchart size={68} />
         </div>
 
         <NameAnimation onComplete={handleNameComplete} />
@@ -65,7 +69,6 @@ export default function HomePage() {
                 <span style={{ fontSize: '0.7rem', color: 'var(--pencil)' }}>Photo goes here</span>
               </div>
             </div>
-            {/* Stack doodle tucked under the photo */}
             <div className="about-doodle-stack">
               <DoodleStack size={90} />
             </div>
@@ -88,6 +91,11 @@ export default function HomePage() {
               proofs and complexities are what keep me up at night.
             </p>
 
+            {/* Linked list doodle between bio and role */}
+            <div className="about-doodle-linkedlist">
+              <DoodleLinkedList width={130} />
+            </div>
+
             <div className="about-role">
               <span className="role-label">AI Engineer</span>
               <span className="role-at"> at </span>
@@ -105,8 +113,6 @@ export default function HomePage() {
               <span className="impact-item highlighter-blue">6 prompting systems</span>
               <span className="impact-sep">·</span>
               <span className="impact-item highlighter-green">95% reliability</span>
-              {/* <span className="impact-sep">·</span> */}
-              {/* <span className="impact-item highlighter-pink">0-delta migrations</span> */}
             </div>
 
             <div className="about-resume">

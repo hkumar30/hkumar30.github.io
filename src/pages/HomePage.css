@@ -12,22 +12,60 @@
   text-align: center;
 }
 
-/* Algorithmic doodles — positioned subtly */
+/* ── Algorithmic doodles ── */
+
 .hero-doodle-tree {
   position: absolute;
-  top: 0;
-  right: -8px;
-  opacity: 0.3;
+  top: -8px;
+  right: 0;
+  opacity: 0.32;
   pointer-events: none;
 }
 
 .hero-doodle-code {
   position: absolute;
-  bottom: 10px;
-  left: -16px;
-  opacity: 0.18;
+  bottom: 0;
+  right: 8px;
+  opacity: 0.28;
   pointer-events: none;
-  transform: rotate(-3deg);
+  transform: rotate(-2deg);
+}
+
+.hero-doodle-flowchart {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  opacity: 0.25;
+  pointer-events: none;
+  transform: rotate(2deg);
+}
+
+.about-doodle-stack {
+  opacity: 0.32;
+  pointer-events: none;
+  transform: rotate(3deg);
+}
+
+.about-doodle-linkedlist {
+  opacity: 0.22;
+  pointer-events: none;
+  margin: 0.5rem 0;
+  transform: rotate(-1deg);
+}
+
+/* Dark mode — boost doodle opacity since fills are already faint */
+[data-theme='dark'] .hero-doodle-tree,
+[data-theme='dark'] .hero-doodle-code,
+[data-theme='dark'] .hero-doodle-flowchart {
+  opacity: 0.55;
+}
+
+[data-theme='dark'] .about-doodle-stack {
+  opacity: 0.55;
+}
+
+[data-theme='dark'] .about-doodle-linkedlist {
+  opacity: 0.4;
 }
 
 .hero-social {
@@ -107,13 +145,6 @@
 
 [data-theme='dark'] .photo-tape {
   background: rgba(240, 216, 126, 0.25);
-}
-
-/* Stack doodle under photo */
-.about-doodle-stack {
-  opacity: 0.28;
-  pointer-events: none;
-  transform: rotate(3deg);
 }
 
 /* Content */
@@ -212,15 +243,11 @@
     text-align: left;
   }
 
-  .hero-doodle-tree {
-    display: none;
-  }
-
-  .hero-doodle-code {
-    display: none;
-  }
-
-  .about-doodle-stack {
+  .hero-doodle-tree,
+  .hero-doodle-code,
+  .hero-doodle-flowchart,
+  .about-doodle-stack,
+  .about-doodle-linkedlist {
     display: none;
   }
 
