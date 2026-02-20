@@ -45,8 +45,8 @@ function TimelineEntry({ item, index, isLast }) {
           <span className="timeline-period">{item.period}</span>
         </div>
         <div className="timeline-company">
-          {item.companyLogo && (
-            <img src={item.companyLogo} alt="" className="timeline-logo" />
+          {(item.companyLogo || item.logo) && (
+            <img src={item.companyLogo || item.logo} alt="" className="timeline-logo" />
           )}
           <span>{item.company || item.institution || item.organization}</span>
           {item.location && <span className="timeline-location"> · {item.location}</span>}

@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import './TitleCycle.css';
 
 const TITLES = ['Cloud Developer', 'Fullstack Developer', 'C++ Developer'];
-const FINAL_TITLE = 'Developer';
 const WRITE_DURATION = 900;
 const PAUSE_AFTER_WRITE = 700;
 const SCRIBBLE_DURATION = 500;
 const PAUSE_AFTER_SCRIBBLE = 300;
+const UNSCRATCH_DELAY = 600;
 
 export default function TitleCycle({ active }) {
   const [lines, setLines] = useState([]);
@@ -28,7 +28,7 @@ export default function TitleCycle({ active }) {
       setLines(TITLES.map((t, i) => ({ text: t, id: i })));
       setCurrentLine('');
       setShowCurrentScribble(false);
-      setPhase('final');
+      setPhase('revealed');
       return undefined;
     }
 
@@ -41,8 +41,12 @@ export default function TitleCycle({ active }) {
       if (idx >= TITLES.length) {
         setCurrentLine('');
         setShowCurrentScribble(false);
-        setPhase('final');
-        sessionStorage.setItem('hk-titles-animated', '1');
+        // Brief pause then unscratch all
+        timerRef.current = setTimeout(() => {
+          if (!mounted) return;
+          setPhase('revealed');
+          sessionStorage.setItem('hk-titles-animated', '1');
+        }, UNSCRATCH_DELAY);
         return;
       }
 
@@ -78,21 +82,30 @@ export default function TitleCycle({ active }) {
     };
   }, [active]);
 
+  const isRevealed = phase === 'revealed';
+
   return (
     <div className="title-cycle" aria-label="Developer titles">
       {lines.map((line) => (
-        <div key={line.id} className="title-line struck">
-          <span className="title-text">{line.text}</span>
-          <svg className="scribble-svg" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
-            <path
-              className="scribble-path"
-              d="M0,6 C20,2 40,10 60,5 C80,1 100,11 120,4 C140,9 160,2 180,7 C190,4 200,6 200,6"
-              fill="none"
-              stroke="var(--red-pen)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-            />
-          </svg>
+        <div
+          key={line.id}
+          className={`title-line ${isRevealed ? 'revealed' : 'struck'}`}
+        >
+          <span className={`title-text ${isRevealed ? 'revealed-text' : ''}`}>
+            {line.text}
+          </span>
+          {!isRevealed && (
+            <svg className="scribble-svg" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
+              <path
+                className="scribble-path"
+                d="M0,6 C20,2 40,10 60,5 C80,1 100,11 120,4 C140,9 160,2 180,7 C190,4 200,6 200,6"
+                fill="none"
+                stroke="var(--red-pen)"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          )}
         </div>
       ))}
 
@@ -111,12 +124,6 @@ export default function TitleCycle({ active }) {
               />
             </svg>
           )}
-        </div>
-      )}
-
-      {phase === 'final' && (
-        <div className="title-line final">
-          <span className="title-text final-text">{FINAL_TITLE}</span>
         </div>
       )}
     </div>

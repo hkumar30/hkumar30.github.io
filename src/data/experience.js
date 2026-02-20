@@ -43,6 +43,7 @@ export const education = [
   {
     id: 'asu',
     institution: 'Arizona State University',
+    logo: '/images/ASU-logo.png',
     degree: 'Bachelor of Science in Computer Science',
     gpa: '4.0',
     period: 'Aug 2021 – May 2025',
@@ -56,6 +57,7 @@ export const volunteer = [
     id: 'stanford',
     role: 'Section Leader',
     organization: 'Stanford University — Code in Place',
+    logo: '/images/stanford-logo.jpg',
     period: 'Apr 2025 – Jun 2025',
     highlights: [
       'Led weekly Python sessions for a 10-student cohort with 85% average attendance.',
@@ -67,6 +69,7 @@ export const volunteer = [
     id: 'soda',
     role: 'Technical Director',
     organization: "Software Developer's Association (SoDA)",
+    logo: '/images/soda-logo.webp',
     period: 'Jan 2022 – Dec 2022',
     highlights: [
       'Planned semester-long technical presentations and maintained the org website with React.',
