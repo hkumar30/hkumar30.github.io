@@ -19,7 +19,7 @@ export default function Notebook({ children, tabs, activePage, onNavigate }) {
         <div className="notebook-dogear" />
       </div>
 
-      {/* Tabs sitting outside the cover on the right */}
+      {/* Compact tabs on the right — expand on hover */}
       <nav className="notebook-tabs" aria-label="Page navigation">
         {tabs.map((tab, i) => (
           <button
@@ -27,9 +27,11 @@ export default function Notebook({ children, tabs, activePage, onNavigate }) {
             className={`notebook-tab ${activePage === tab.id ? 'active' : ''}`}
             onClick={() => onNavigate(tab.id)}
             aria-current={activePage === tab.id ? 'page' : undefined}
+            aria-label={tab.label}
             style={{ '--tab-color': TAB_COLORS[i % TAB_COLORS.length] }}
           >
-            {tab.label}
+            <span className="tab-short">{tab.short}</span>
+            <span className="tab-full">{tab.label}</span>
           </button>
         ))}
       </nav>

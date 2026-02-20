@@ -10,11 +10,11 @@ import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
 
 const TABS = [
-  { id: 'home', label: 'Home' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'workedu', label: 'Work & Edu' },
-  { id: 'blog', label: 'Blog' },
-  { id: 'contact', label: 'Say Hi' },
+  { id: 'home', label: 'Home', short: 'H' },
+  { id: 'projects', label: 'Projects', short: 'P' },
+  { id: 'workedu', label: 'Work & Edu', short: 'W' },
+  { id: 'blog', label: 'Blog', short: 'B' },
+  { id: 'contact', label: 'Say Hi', short: '✉' },
 ];
 
 const PAGES = {

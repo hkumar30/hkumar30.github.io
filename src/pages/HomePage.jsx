@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import NameAnimation from '../components/NameAnimation';
 import TitleCycle from '../components/TitleCycle';
 import SocialLinks from '../components/SocialLinks';
@@ -23,6 +23,15 @@ export default function HomePage() {
   const handleNameComplete = useCallback(() => {
     setNameComplete(true);
   }, []);
+
+  const [photoExpanded, setPhotoExpanded] = useState(false);
+  const photoTimer = useRef(null);
+
+  const handlePhotoClick = () => {
+    if (photoExpanded) return;
+    setPhotoExpanded(true);
+    photoTimer.current = setTimeout(() => setPhotoExpanded(false), 3000);
+  };
 
   return (
     <div className="home-page">
@@ -52,9 +61,17 @@ export default function HomePage() {
       <section className="about-section">
         <div className="about-grid">
           <div className="about-photo-wrapper">
-            <div className="about-photo-frame">
+            <div
+              className={`about-photo-frame ${photoExpanded ? 'expanded' : ''}`}
+              onClick={handlePhotoClick}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && handlePhotoClick()}
+            >
               <div className="photo-tape top-left" />
               <div className="photo-tape top-right" />
+              {photoExpanded && <div className="photo-tape bottom-left" />}
+              {photoExpanded && <div className="photo-tape bottom-right" />}
               <img
                 src="/images/profile.jpg"
                 alt="Harsh Kumar"
@@ -68,6 +85,9 @@ export default function HomePage() {
                 <span style={{ fontSize: '2rem' }}>?</span>
                 <span style={{ fontSize: '0.7rem', color: 'var(--pencil)' }}>Photo goes here</span>
               </div>
+              {photoExpanded && (
+                <span className="photo-scribble">hey, that&apos;s me!</span>
+              )}
             </div>
             <div className="about-doodle-stack">
               <DoodleStack size={90} />
