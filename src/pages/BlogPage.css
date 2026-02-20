@@ -1,0 +1,136 @@
+.blog-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.blog-subtitle {
+  font-size: 1rem;
+  margin-top: -4px;
+}
+
+/* Search */
+.blog-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1.5px solid var(--pencil-light);
+  padding-bottom: 6px;
+  max-width: 360px;
+}
+
+.blog-search-icon {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.blog-search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: 'Kalam', cursive;
+  font-size: 0.95rem;
+  color: var(--blue-pen);
+  outline: none;
+}
+
+.blog-search-input::placeholder {
+  color: var(--pencil-light);
+}
+
+/* Tags */
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.blog-tag {
+  font-family: 'Kalam', cursive;
+  font-size: 0.8rem;
+  color: var(--pencil);
+  border: 1px solid var(--pencil-light);
+  border-radius: 12px;
+  padding: 3px 12px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.blog-tag:hover {
+  border-color: var(--blue-pen);
+  color: var(--blue-pen);
+}
+
+.blog-tag.active {
+  background: var(--highlighter-yellow);
+  border-color: var(--blue-pen);
+  color: var(--sharpie);
+}
+
+/* Post cards */
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.blog-post-card {
+  padding: 0.75rem 0;
+}
+
+.blog-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.blog-post-title {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.blog-post-title:hover {
+  color: var(--blue-pen);
+}
+
+.blog-post-date {
+  font-family: 'Kalam', cursive;
+  font-size: 0.78rem;
+  color: var(--pencil);
+  white-space: nowrap;
+}
+
+.blog-post-tags {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0 8px;
+}
+
+.blog-post-tag {
+  font-family: 'Kalam', cursive;
+  font-size: 0.7rem;
+  color: var(--pencil);
+  border: 1px solid var(--pencil-light);
+  border-radius: 10px;
+  padding: 1px 8px;
+}
+
+.blog-post-excerpt {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.blog-post-cta {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.blog-empty {
+  font-size: 1rem;
+  padding: 2rem 0;
+}

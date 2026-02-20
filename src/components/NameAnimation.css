@@ -1,0 +1,58 @@
+.name-animation {
+  position: relative;
+  display: inline-block;
+  align-items: baseline;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.name-text {
+  display: inline-block;
+  transform-origin: left center;
+  will-change: clip-path, filter, opacity;
+}
+
+/* Hidden state */
+.name-animation.hidden .name-text {
+  opacity: 0;
+  filter: blur(1px);
+  clip-path: inset(0 100% 0 0);
+}
+
+/* Handwriting-like reveal */
+.name-animation.writing .name-text {
+  animation: handwrite-reveal 1.35s ease-out forwards;
+}
+
+/* Done state */
+.name-animation.done .name-text {
+  opacity: 1;
+  filter: blur(0);
+  clip-path: inset(0 0 0 0);
+}
+
+@keyframes handwrite-reveal {
+  from {
+    opacity: 0.1;
+    filter: blur(1px);
+    clip-path: inset(0 100% 0 0);
+    transform: rotate(-0.3deg);
+  }
+  70% {
+    opacity: 1;
+    filter: blur(0.2px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    clip-path: inset(0 0 0 0);
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .name-animation {
+    font-size: 2.4rem;
+  }
+}

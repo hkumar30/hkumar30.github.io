@@ -1,0 +1,162 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Hero ── */
+
+.hero-section {
+  position: relative;
+  padding-top: 1rem;
+}
+
+.hero-doodle-left {
+  position: absolute;
+  left: -32px;
+  top: 24px;
+  opacity: 0.5;
+}
+
+.hero-social {
+  margin-top: 1.5rem;
+}
+
+/* ── About ── */
+
+.about-section {
+  padding: 1rem 0 2rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Photo */
+.about-photo-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.about-photo-frame {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  transform: rotate(-2deg);
+}
+
+.about-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid var(--pencil-light);
+  border-radius: 3px;
+}
+
+.about-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--paper-bg-alt);
+  border: 2px dashed var(--pencil-light);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+/* Tape strips */
+.photo-tape {
+  position: absolute;
+  width: 40px;
+  height: 16px;
+  background: rgba(255, 241, 118, 0.5);
+  z-index: 2;
+  border-radius: 1px;
+}
+
+.photo-tape.top-left {
+  top: -8px;
+  left: 10px;
+  transform: rotate(-8deg);
+}
+
+.photo-tape.top-right {
+  top: -8px;
+  right: 10px;
+  transform: rotate(6deg);
+}
+
+[data-theme='dark'] .photo-tape {
+  background: rgba(240, 216, 126, 0.25);
+}
+
+/* Content */
+.about-content {
+  position: relative;
+}
+
+.about-doodle {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  opacity: 0.6;
+}
+
+.about-bio {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.about-role {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.05rem;
+  color: var(--black-pen);
+  margin-bottom: 1.2rem;
+}
+
+.mindspark-logo {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mindspark-text {
+  font-weight: 700;
+}
+
+.about-resume {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1.5rem;
+  }
+
+  .about-photo-frame {
+    width: 140px;
+    height: 140px;
+  }
+
+  .about-content {
+    text-align: left;
+  }
+
+  .hero-doodle-left {
+    display: none;
+  }
+}

@@ -1,0 +1,88 @@
+.skill-marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.marquee-row {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: marquee-left 30s linear infinite;
+}
+
+.marquee-row[data-direction='right'] .marquee-track {
+  animation: marquee-right 30s linear infinite;
+}
+
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1.5px solid var(--pencil-light);
+  border-radius: 20px;
+  white-space: nowrap;
+  cursor: default;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.skill-pill:hover {
+  border-color: var(--blue-pen);
+  background: var(--highlighter-yellow);
+  transform: translateY(-2px);
+}
+
+.skill-marker {
+  flex-shrink: 0;
+}
+
+.skill-name {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 0.95rem;
+  color: var(--black-pen);
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+  .marquee-track {
+    animation-duration: 20s;
+  }
+  .marquee-row[data-direction='right'] .marquee-track {
+    animation-duration: 20s;
+  }
+}

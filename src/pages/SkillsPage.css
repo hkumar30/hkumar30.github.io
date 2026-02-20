@@ -1,0 +1,35 @@
+.skills-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.skills-heading-row {
+  display: flex;
+  align-items: center;
+}
+
+.skills-subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  margin-top: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.skills-section {
+  padding-bottom: 0.5rem;
+}
+
+.experience-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.education-block {
+  margin-top: 0;
+}
+
+.volunteer-section {
+  padding-bottom: 1rem;
+}

@@ -1,0 +1,100 @@
+.contact-form {
+  max-width: 520px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1rem;
+  color: var(--pencil);
+  margin-bottom: 4px;
+}
+
+.form-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--pencil-light);
+  padding: 8px 0;
+  font-family: 'Kalam', cursive;
+  font-size: 1rem;
+  color: var(--blue-pen);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  border-bottom-color: var(--blue-pen);
+}
+
+.form-input::placeholder {
+  color: var(--pencil-light);
+  font-style: italic;
+}
+
+.form-textarea {
+  border: 1.5px solid var(--pencil-light);
+  border-radius: 4px;
+  padding: 10px;
+  resize: vertical;
+  min-height: 100px;
+  background:
+    repeating-linear-gradient(
+      transparent,
+      transparent 27px,
+      var(--ruled-line) 27px,
+      var(--ruled-line) 28px
+    );
+  background-size: 100% 28px;
+  background-position: 0 10px;
+  line-height: 28px;
+}
+
+.form-textarea:focus {
+  border-color: var(--blue-pen);
+}
+
+.form-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--blue-pen);
+  transition: width 0.3s ease;
+}
+
+.form-input:focus ~ .form-underline {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.form-status {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+}
+
+.form-status.success {
+  color: var(--pencil);
+}
+
+.form-status.error {
+  color: var(--red-pen);
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    max-width: 100%;
+  }
+}

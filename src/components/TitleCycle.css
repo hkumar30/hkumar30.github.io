@@ -1,0 +1,103 @@
+.title-cycle {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 8rem;
+}
+
+.title-line {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.title-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--blue-pen);
+  line-height: 1.4;
+}
+
+.title-line.current.writing .title-text {
+  animation: handwritten-reveal 0.75s ease-out both;
+}
+
+@keyframes handwritten-reveal {
+  from {
+    opacity: 0.15;
+    clip-path: inset(0 100% 0 0);
+    filter: blur(0.6px);
+    transform: translateY(1px);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* Struck-through lines */
+.title-line.struck {
+  opacity: 0.55;
+}
+
+.scribble-svg {
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% + 8px);
+  height: 14px;
+  pointer-events: none;
+}
+
+.scribble-path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 0;
+}
+
+/* Animating scribble drawing in */
+.scribble-svg.animating .scribble-path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: scribble-draw 0.45s ease-out forwards;
+}
+
+@keyframes scribble-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Final title — highlighted */
+.title-line.final {
+  margin-top: 4px;
+}
+
+.final-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--sharpie);
+  background: linear-gradient(
+    transparent 28%,
+    var(--highlighter-yellow) 28%,
+    var(--highlighter-yellow) 84%,
+    transparent 84%
+  );
+  padding: 0 10px;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .title-text {
+    font-size: 1.3rem;
+  }
+  .final-text {
+    font-size: 1.5rem;
+  }
+}
