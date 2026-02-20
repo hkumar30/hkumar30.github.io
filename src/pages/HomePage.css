@@ -8,14 +8,26 @@
 
 .hero-section {
   position: relative;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
+  text-align: center;
 }
 
-.hero-doodle-left {
+/* Algorithmic doodles — positioned subtly */
+.hero-doodle-tree {
   position: absolute;
-  left: -32px;
-  top: 24px;
-  opacity: 0.5;
+  top: 0;
+  right: -8px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.hero-doodle-code {
+  position: absolute;
+  bottom: 10px;
+  left: -16px;
+  opacity: 0.18;
+  pointer-events: none;
+  transform: rotate(-3deg);
 }
 
 .hero-social {
@@ -38,7 +50,9 @@
 /* Photo */
 .about-photo-wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
 .about-photo-frame {
@@ -95,6 +109,13 @@
   background: rgba(240, 216, 126, 0.25);
 }
 
+/* Stack doodle under photo */
+.about-doodle-stack {
+  opacity: 0.28;
+  pointer-events: none;
+  transform: rotate(3deg);
+}
+
 /* Content */
 .about-content {
   position: relative;
@@ -108,19 +129,31 @@
 }
 
 .about-bio {
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
   line-height: 1.75;
 }
 
+/* Role line */
 .about-role {
   display: flex;
   align-items: center;
   gap: 6px;
   font-family: 'Patrick Hand', cursive;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   color: var(--black-pen);
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.role-label {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--sharpie);
+}
+
+.role-at {
+  color: var(--pencil);
 }
 
 .mindspark-logo {
@@ -131,6 +164,29 @@
 
 .mindspark-text {
   font-weight: 700;
+}
+
+/* Impact stats */
+.role-impact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.impact-item {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+.impact-sep {
+  color: var(--pencil);
+  font-size: 0.9rem;
+  user-select: none;
 }
 
 .about-resume {
@@ -156,7 +212,23 @@
     text-align: left;
   }
 
-  .hero-doodle-left {
+  .hero-doodle-tree {
     display: none;
+  }
+
+  .hero-doodle-code {
+    display: none;
+  }
+
+  .about-doodle-stack {
+    display: none;
+  }
+
+  .role-impact {
+    gap: 6px;
+  }
+
+  .impact-item {
+    font-size: 0.9rem;
   }
 }

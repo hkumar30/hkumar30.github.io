@@ -1,22 +1,26 @@
 .name-animation {
   position: relative;
-  display: inline-block;
-  align-items: baseline;
-  font-size: 3.5rem;
-  line-height: 1.1;
-  margin-bottom: 0.5rem;
+  display: block;
+  text-align: center;
+  font-size: 4.8rem;
+  line-height: 1.05;
+  margin-bottom: 0.6rem;
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  color: var(--sharpie);
+  letter-spacing: -0.5px;
 }
 
 .name-text {
   display: inline-block;
-  transform-origin: left center;
+  transform-origin: center bottom;
   will-change: clip-path, filter, opacity;
 }
 
 /* Hidden state */
 .name-animation.hidden .name-text {
   opacity: 0;
-  filter: blur(1px);
+  filter: blur(1.5px);
   clip-path: inset(0 100% 0 0);
 }
 
@@ -35,24 +39,24 @@
 @keyframes handwrite-reveal {
   from {
     opacity: 0.1;
-    filter: blur(1px);
+    filter: blur(1.5px);
     clip-path: inset(0 100% 0 0);
-    transform: rotate(-0.3deg);
+    transform: rotate(-1deg) translateY(2px);
   }
-  70% {
+  60% {
     opacity: 1;
-    filter: blur(0.2px);
+    filter: blur(0.3px);
   }
   to {
     opacity: 1;
     filter: blur(0);
     clip-path: inset(0 0 0 0);
-    transform: rotate(0deg);
+    transform: rotate(0deg) translateY(0);
   }
 }
 
 @media (max-width: 768px) {
   .name-animation {
-    font-size: 2.4rem;
+    font-size: 3.2rem;
   }
 }

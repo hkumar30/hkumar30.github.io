@@ -4,7 +4,13 @@ import TitleCycle from '../components/TitleCycle';
 import SocialLinks from '../components/SocialLinks';
 import RoughButton from '../components/RoughButton';
 import { RoughLine } from '../components/RoughBox';
-import { DoodleLightbulb, DoodleArrow, DoodlePaperclip } from '../components/Doodles';
+import {
+  DoodleLightbulb,
+  DoodlePaperclip,
+  DoodleBinaryTree,
+  DoodleStack,
+  DoodleCodeSnippet,
+} from '../components/Doodles';
 import './HomePage.css';
 
 export default function HomePage() {
@@ -20,8 +26,12 @@ export default function HomePage() {
     <div className="home-page">
       {/* ── Hero ── */}
       <section className="hero-section">
-        <div className="hero-doodle-left">
-          <DoodleArrow direction="right" size={20} />
+        {/* Algorithmic doodles — subtle background decoration */}
+        <div className="hero-doodle-tree">
+          <DoodleBinaryTree size={144} />
+        </div>
+        <div className="hero-doodle-code">
+          <DoodleCodeSnippet width={110} />
         </div>
 
         <NameAnimation onComplete={handleNameComplete} />
@@ -51,9 +61,13 @@ export default function HomePage() {
                 }}
               />
               <div className="about-photo-placeholder" style={{ display: 'none' }}>
-                <span>📷</span>
+                <span style={{ fontSize: '2rem' }}>?</span>
                 <span style={{ fontSize: '0.7rem', color: 'var(--pencil)' }}>Photo goes here</span>
               </div>
+            </div>
+            {/* Stack doodle tucked under the photo */}
+            <div className="about-doodle-stack">
+              <DoodleStack size={90} />
             </div>
           </div>
 
@@ -75,7 +89,8 @@ export default function HomePage() {
             </p>
 
             <div className="about-role">
-              <span>AI Engineer at </span>
+              <span className="role-label">AI Engineer</span>
+              <span className="role-at"> at </span>
               <img
                 src="/images/mindspark-logo.png"
                 alt="Mindspark"
@@ -85,6 +100,13 @@ export default function HomePage() {
                 }}
               />
               <span className="mindspark-text">Mindspark</span>
+            </div>
+            <div className="role-impact">
+              <span className="impact-item highlighter-blue">6 prompting systems</span>
+              <span className="impact-sep">·</span>
+              <span className="impact-item highlighter-green">95% reliability</span>
+              {/* <span className="impact-sep">·</span> */}
+              {/* <span className="impact-item highlighter-pink">0-delta migrations</span> */}
             </div>
 
             <div className="about-resume">
