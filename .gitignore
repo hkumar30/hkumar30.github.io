@@ -6,3 +6,7 @@ out
 .env.local
 .cursor
 AGENTS.md
+dist
+*.log
+.vercel
+/public/images/hero-portrait.png

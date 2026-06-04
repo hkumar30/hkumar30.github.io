@@ -13,8 +13,6 @@ export const projects: Project[] = [
       live: 'https://sparkifyai.netlify.app',
       github: 'https://github.com/hkumar30/SparkyAi',
     },
-    featured: true,
-    categories: ['full-stack', 'open-source'],
     year: '2025',
   },
   {
@@ -29,8 +27,6 @@ export const projects: Project[] = [
       devpost: 'https://devpost.com/software/supertutor',
       github: 'https://github.com/hkumar30/SuperTutor',
     },
-    featured: true,
-    categories: ['full-stack', 'open-source'],
     year: '2024',
   },
   {
@@ -45,8 +41,6 @@ export const projects: Project[] = [
       live: 'https://splayer-game.netlify.app',
       github: 'https://github.com/hkumar30/Splayer',
     },
-    featured: true,
-    categories: ['frontend', 'open-source'],
     year: '2024',
   },
   {
@@ -61,17 +55,6 @@ export const projects: Project[] = [
       live: 'https://yakuza-game.netlify.app',
       github: 'https://github.com/hkumar30/Yakuza',
     },
-    featured: true,
-    categories: ['frontend', 'open-source'],
     year: '2023',
   },
 ];
-
-export const projectFilters = [
-  { id: 'all', label: 'All' },
-  { id: 'frontend', label: 'Frontend' },
-  { id: 'full-stack', label: 'Full-Stack' },
-  { id: 'open-source', label: 'Open Source' },
-] as const;
-
-export type ProjectFilterId = (typeof projectFilters)[number]['id'];

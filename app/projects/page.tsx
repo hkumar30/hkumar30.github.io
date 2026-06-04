@@ -1,19 +1,19 @@
 import { PageTransition, SectionTransition } from '@/components/PageTransition';
-import ExperienceTimeline from '@/components/ExperienceTimeline';
-import { workExperience } from '@/data/experience';
+import ProjectGrid from '@/components/ProjectGrid';
+import { projects } from '@/data/projects';
 
-export default function WorkPage() {
+export default function ProjectsPage() {
   return (
     <PageTransition className="page-shell">
       <section className="route-intro">
-        <span className="section-label">Experience</span>
+        <span className="section-label">Portfolio</span>
         <h1 className="route-heading work-heading">
-          Work <sup className="work-count">{workExperience.length}</sup>
+          Projects <sup className="work-count">{projects.length}</sup>
         </h1>
       </section>
 
       <SectionTransition>
-        <ExperienceTimeline items={workExperience} />
+        <ProjectGrid />
       </SectionTransition>
     </PageTransition>
   );

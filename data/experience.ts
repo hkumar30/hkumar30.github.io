@@ -1,4 +1,4 @@
-import type { EducationItem, VolunteerItem, WorkExperienceItem } from './types';
+import type { EducationItem, WorkExperienceItem } from './types';
 
 export const workExperience: WorkExperienceItem[] = [
   {
@@ -54,28 +54,3 @@ export const education: EducationItem[] = [
   },
 ];
 
-export const volunteer: VolunteerItem[] = [
-  {
-    id: 'stanford',
-    role: 'Section Leader',
-    organization: 'Stanford University — Code in Place',
-    logo: '/images/stanford-logo.jpg',
-    period: 'Apr 2025 – Jun 2025',
-    highlights: [
-      'Led weekly Python sessions for a 10-student cohort with 85% average attendance.',
-      'Delivered 24 one-on-one mentoring sessions.',
-      'Collaborated with 1,400+ global instructors to expand equitable CS access for 20,000+ learners.',
-    ],
-  },
-  {
-    id: 'soda',
-    role: 'Technical Director',
-    organization: "Software Developer's Association (SoDA)",
-    logo: '/images/soda-logo.webp',
-    period: 'Jan 2022 – Dec 2022',
-    highlights: [
-      'Planned semester-long technical presentations and maintained the org website with React.',
-      'Spearheaded the Annual Coding Bootcamp 2022 for 150 participants.',
-    ],
-  },
-];

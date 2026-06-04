@@ -49,7 +49,7 @@ export default function RootLayout({
       <body className={`${garamond.variable} ${dmSans.variable}`}>
         <noscript>{seo.noscript}</noscript>
         <Nav />
-        <main>{children}</main>
+        <main className="site-main">{children}</main>
         <GrainShader />
       </body>
     </html>
