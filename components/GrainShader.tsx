@@ -16,8 +16,8 @@ function createNoiseTile(size: number) {
 
   const image = tileCtx.createImageData(size, size);
   for (let index = 0; index < image.data.length; index += 4) {
-    const grain = 228 + Math.floor(Math.random() * 24);
-    const alpha = 9 + Math.floor(Math.random() * 18);
+    const grain = 220 + Math.floor(Math.random() * 30);
+    const alpha = 16 + Math.floor(Math.random() * 28);
     image.data[index] = grain;
     image.data[index + 1] = grain;
     image.data[index + 2] = grain;
@@ -26,6 +26,12 @@ function createNoiseTile(size: number) {
 
   tileCtx.putImageData(image, 0, 0);
   return tile;
+}
+
+function setScrollVars(scrollY: number) {
+  const root = document.documentElement;
+  root.style.setProperty('--scroll-y', `${scrollY}px`);
+  root.style.setProperty('--grain-offset', `${scrollY * 0.01}`);
 }
 
 export default function GrainShader() {
@@ -80,9 +86,8 @@ export default function GrainShader() {
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
       context.fillStyle = pattern;
 
-      // Scroll offset acts as uTime/uOffset to shift grain across the paper.
-      const shiftX = (latestScrollY * 0.11) % TILE_SIZE;
-      const shiftY = (latestScrollY * 0.17) % TILE_SIZE;
+      const shiftX = (latestScrollY * 0.24) % TILE_SIZE;
+      const shiftY = (latestScrollY * 0.36) % TILE_SIZE;
       context.save();
       context.translate(-shiftX, -shiftY);
       context.fillRect(-TILE_SIZE, -TILE_SIZE, width + TILE_SIZE * 2, height + TILE_SIZE * 2);
@@ -91,6 +96,7 @@ export default function GrainShader() {
 
     const handleScroll = () => {
       latestScrollY = window.scrollY || 0;
+      setScrollVars(latestScrollY);
       scheduleFrame();
     };
 
@@ -101,6 +107,7 @@ export default function GrainShader() {
 
     resizeCanvas();
     latestScrollY = window.scrollY || 0;
+    setScrollVars(latestScrollY);
     scheduleFrame();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -110,6 +117,8 @@ export default function GrainShader() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       window.cancelAnimationFrame(frameRequest);
+      document.documentElement.style.removeProperty('--scroll-y');
+      document.documentElement.style.removeProperty('--grain-offset');
     };
   }, []);
 

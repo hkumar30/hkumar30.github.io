@@ -15,6 +15,7 @@ module.exports = {
         paper: 'var(--paper)',
         rust: 'var(--rust)',
         mist: 'var(--mist)',
+        signatureblue: 'var(--signature-blue)',
       },
       fontFamily: {
         display: ['var(--font-garamond)', 'serif'],

@@ -1,5 +1,3 @@
-export type ProjectCategory = 'frontend' | 'full-stack' | 'open-source';
-
 export type ProjectAward = {
   place: string;
   prize?: string;
@@ -20,19 +18,7 @@ export type Project = {
   tech: string[];
   award: ProjectAward | null;
   links: ProjectLinks;
-  featured: boolean;
-  categories: ProjectCategory[];
   year: string;
-};
-
-export type WritingPost = {
-  id: string;
-  title: string;
-  date: string;
-  tags: string[];
-  excerpt: string;
-  body: string | null;
-  readingTime: string;
 };
 
 export type WorkExperienceItem = {
@@ -54,21 +40,6 @@ export type EducationItem = {
   period: string;
   location: string;
   highlights: string[];
-};
-
-export type VolunteerItem = {
-  id: string;
-  role: string;
-  organization: string;
-  logo: string;
-  period: string;
-  highlights: string[];
-};
-
-export type SkillRow = {
-  id: string;
-  direction: 'left' | 'right';
-  skills: string[];
 };
 
 export type SocialLink = {

@@ -6,6 +6,7 @@ import { profile } from '@/data/profile';
 
 const navItems = [
   { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
   { href: '/work', label: 'Work' },
   { href: '/about', label: 'About' },
   { href: '/writing', label: 'Writing' },
