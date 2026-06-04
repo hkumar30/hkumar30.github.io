@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
-dist
+.next
+out
 .env
 .env.local
 .cursor
+AGENTS.md
