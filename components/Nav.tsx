@@ -1,17 +1,10 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { profile } from '@/data/profile';
-
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/work', label: 'Work' },
-  { href: '/about', label: 'About' },
-  { href: '/writing', label: 'Writing' },
-  { href: '/contact', label: 'Contact' },
-];
+import { navItems } from '@/data/siteContent';
 
 function isActivePath(pathname: string, href: string) {
   if (href === '/') return pathname === '/';
@@ -20,48 +13,117 @@ function isActivePath(pathname: string, href: string) {
 
 export default function Nav() {
   const pathname = usePathname() ?? '/';
+  const [open, setOpen] = useState(false);
+  const [showNav, setShowNav] = useState(pathname !== '/');
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const drawerNavRef = useRef<HTMLElement | null>(null);
+  const wasDrawerVisible = useRef(false);
+  const isDrawerVisible = open && showNav;
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname !== '/') {
+      setShowNav(true);
+      return;
+    }
+
+    const updateVisibility = () => {
+      const threshold = window.innerHeight;
+      const shouldShow = window.scrollY >= threshold;
+      setShowNav(shouldShow);
+      if (!shouldShow) {
+        setOpen(false);
+      }
+    };
+
+    updateVisibility();
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    window.addEventListener('resize', updateVisibility);
+
+    return () => {
+      window.removeEventListener('scroll', updateVisibility);
+      window.removeEventListener('resize', updateVisibility);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    if (wasDrawerVisible.current && !isDrawerVisible && showNav) {
+      menuButtonRef.current?.focus();
+    }
+    wasDrawerVisible.current = isDrawerVisible;
+  }, [isDrawerVisible, showNav]);
+
+  useEffect(() => {
+    if (!isDrawerVisible) {
+      document.body.style.overflow = '';
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    document.body.style.overflow = 'hidden';
+    drawerNavRef.current?.querySelector<HTMLAnchorElement>('a')?.focus();
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isDrawerVisible]);
 
   return (
     <>
-      <header className="site-nav">
-        <div className="site-nav-inner">
-          <Link href="/" className="site-logo font-garamond">
-            {profile.name}
-          </Link>
-
-          <nav className="site-nav-links" aria-label="Primary navigation">
-            {navItems.map((item) => {
-              const active = isActivePath(pathname, item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`site-nav-link ${active ? 'active-nav-link' : ''}`}
-                  aria-current={active ? 'page' : undefined}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
-      </header>
-
-      <nav className="site-bottom-nav" aria-label="Mobile navigation">
-        {navItems.map((item) => {
-          const active = isActivePath(pathname, item.href);
-          return (
-            <Link
-              key={`mobile-${item.href}`}
-              href={item.href}
-              className={`site-bottom-link ${active ? 'active-nav-link' : ''}`}
-              aria-current={active ? 'page' : undefined}
-            >
-              {item.label}
+      {showNav ? (
+        <header className="site-nav">
+          <div className="site-nav-inner">
+            <Link href="/" className="site-logo">
+              {profile.name}
             </Link>
-          );
-        })}
-      </nav>
+
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className="menu-toggle"
+              aria-expanded={isDrawerVisible}
+              aria-controls="global-nav-drawer"
+              onClick={() => setOpen((prev) => !prev)}
+            >
+              {isDrawerVisible ? 'Close' : 'Menu'}
+            </button>
+          </div>
+        </header>
+      ) : null}
+
+      {isDrawerVisible ? (
+        <>
+          <div className="menu-overlay open" onClick={() => setOpen(false)} />
+          <aside id="global-nav-drawer" className="menu-drawer open" aria-label="Global navigation">
+            <nav ref={drawerNavRef} className="menu-drawer-nav" aria-label="Primary navigation">
+              {navItems.map((item) => {
+                const active = isActivePath(pathname, item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`menu-drawer-link ${active ? 'active-nav-link' : ''}`}
+                    aria-current={active ? 'page' : undefined}
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+          </aside>
+        </>
+      ) : null}
     </>
   );
 }

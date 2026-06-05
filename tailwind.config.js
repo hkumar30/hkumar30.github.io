@@ -20,6 +20,7 @@ module.exports = {
       fontFamily: {
         display: ['var(--font-garamond)', 'serif'],
         body: ['NeueMontreal', 'var(--font-dm-sans)', 'sans-serif'],
+        hindi: ['var(--font-hindi)', 'Noto Sans Devanagari', 'sans-serif'],
       },
       borderRadius: {
         none: '0',

@@ -3,25 +3,34 @@ import { PageTransition, SectionTransition } from '@/components/PageTransition';
 import SectionDivider from '@/components/SectionDivider';
 import { education } from '@/data/experience';
 import { profile } from '@/data/profile';
+import { routeLabels } from '@/data/siteContent';
 
 export default function AboutPage() {
   return (
     <PageTransition className="page-shell">
       <section className="route-intro about-intro">
-        <span className="section-label">About</span>
-        <h1 className="route-heading">About</h1>
+        <p className="section-label bilingual-label">
+          <span>{routeLabels.about.en}</span>
+          <span className="font-hindi" lang="hi">
+            {routeLabels.about.hi}
+          </span>
+        </p>
+        <h1 className="route-heading">{routeLabels.about.en}</h1>
         {profile.aboutShortBio.map((paragraph) => (
           <p key={paragraph} className="route-copy">
             {paragraph}
           </p>
         ))}
         <Link href="/work" className="text-link font-garamond about-work-link">
-          Work experience -&gt;
+          <span>Work experience -&gt;</span>
+          <span className="font-hindi" lang="hi">
+            अनुभव देखें -&gt;
+          </span>
         </Link>
       </section>
 
       <SectionTransition>
-        <SectionDivider label="Currently" />
+        <SectionDivider label={`Currently / ${routeLabels.currently.hi}`} />
         <section className="currently-grid">
           <article className="currently-item">
             <h3 className="section-label">Building</h3>
@@ -39,9 +48,11 @@ export default function AboutPage() {
       </SectionTransition>
 
       <SectionTransition>
-        <SectionDivider label="Education" />
+        <SectionDivider label={`Education / ${routeLabels.education.hi}`} />
         <details className="education-collapse">
-          <summary className="education-collapse-summary">View education details</summary>
+          <summary className="education-collapse-summary">
+            View education details / शिक्षा देखें
+          </summary>
           <div className="timeline-list">
             {education.map((item) => (
               <article key={item.id} className="timeline-item">
