@@ -7,21 +7,11 @@ export const workExperience: WorkExperienceItem[] = [
     company: 'Mindspark',
     companyLogo: '/images/mindspark-logo.png',
     location: 'Remote',
-    period: 'Oct 2025 – Present',
+    period: 'Aug 2025 – Present',
     highlights: [
       'Engineered a zero-downtime production data migration for the Kairos Aurora PostgreSQL database with 0 deltas across 18 tables.',
       'Built and refined prompts used by six different OpenAI models, raising system reliability to 95%.',
       'Authored the Migration Runbook and automated end-to-end deployment via CI/CD pipelines.',
-    ],
-  },
-  {
-    id: 'mindspark-fe',
-    role: 'Frontend Developer',
-    company: 'Mindspark',
-    companyLogo: '/images/mindspark-logo.png',
-    location: 'Remote',
-    period: 'Aug 2025 – Oct 2025',
-    highlights: [
       'Delivered scalable React components integrated with the existing CMS, improving user retention by 18%.',
       'Integrated REST APIs on AWS Lambda into distributed front-end workflows, reducing load times by 35%.',
     ],

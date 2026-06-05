@@ -21,14 +21,15 @@ export default function ExperienceTimeline({ items }: ExperienceTimelineProps) {
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.5, delay: i * 0.07, ease }}
         >
+          <span className="experience-number">{String(i + 1).padStart(2, '0')}</span>
           <div className="experience-body">
-            <h2 className="experience-role">{item.role}</h2>
-            <p className="experience-meta-row">
-              <span className="experience-company">{item.company}</span>
-              <span className="experience-sep">—</span>
-              <span className="timeline-meta">{item.period}</span>
+            <h2 className="experience-company-name">{item.company}</h2>
+            <p className="experience-role-row">
+              <span>{item.role}</span>
               <span className="experience-sep">·</span>
-              <span className="timeline-meta">{item.location}</span>
+              <span>{item.location}</span>
+              <span className="experience-sep">·</span>
+              <span>{item.period}</span>
             </p>
             <ul className="timeline-highlights">
               {item.highlights.map((highlight) => (

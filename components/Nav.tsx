@@ -72,44 +72,42 @@ export default function Nav() {
 
   return (
     <>
-      {showNav ? (
-        <header className="site-nav">
-          <div className="site-nav-inner">
-            <Link href="/" className="site-logo" aria-label="Home">
-              <HKLogo className="hk-logo-nav" />
-            </Link>
+      <header className={`site-nav ${showNav ? 'is-visible' : ''}`}>
+        <div className="site-nav-inner">
+          <Link href="/" className="site-logo" aria-label="Home">
+            <HKLogo className="hk-logo-nav" />
+          </Link>
 
-            {/* Desktop: inline links, no drawer */}
-            <nav className="site-nav-links-desktop" aria-label="Primary navigation">
-              {navItems.map((item) => {
-                const active = isActivePath(pathname, item.href);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={active ? 'active-nav-link' : ''}
-                    aria-current={active ? 'page' : undefined}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
+          {/* Desktop: inline links, no drawer */}
+          <nav className="site-nav-links-desktop" aria-label="Primary navigation">
+            {navItems.map((item) => {
+              const active = isActivePath(pathname, item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={active ? 'active-nav-link' : ''}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-            {/* Mobile: toggle for drawer */}
-            <button
-              ref={menuButtonRef}
-              type="button"
-              className="menu-toggle-mobile"
-              aria-expanded={isDrawerVisible}
-              aria-controls="global-nav-drawer"
-              onClick={() => setOpen((prev) => !prev)}
-            >
-              {isDrawerVisible ? 'Close' : 'Menu'}
-            </button>
-          </div>
-        </header>
-      ) : null}
+          {/* Mobile: toggle for drawer */}
+          <button
+            ref={menuButtonRef}
+            type="button"
+            className="menu-toggle-mobile"
+            aria-expanded={isDrawerVisible}
+            aria-controls="global-nav-drawer"
+            onClick={() => setOpen((prev) => !prev)}
+          >
+            {isDrawerVisible ? 'Close' : 'Menu'}
+          </button>
+        </div>
+      </header>
 
       {isDrawerVisible ? (
         <>
