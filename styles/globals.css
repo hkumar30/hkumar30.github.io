@@ -488,6 +488,19 @@ main.site-main:has(.home-shell) {
   font-size: 1.4rem;
 }
 
+/* Home content row */
+.home-content-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 2px solid var(--ink);
+}
+
+@media (min-width: 980px) {
+  .home-content-row {
+    grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+  }
+}
+
 /* Home monologue section */
 .home-monologue {
   padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 8vw, 9rem);
@@ -498,6 +511,8 @@ main.site-main:has(.home-shell) {
   gap: clamp(2rem, 4vw, 3.5rem);
   position: relative;
   overflow: hidden;
+  border-right: none;
+  border-bottom: 2px solid var(--ink);
 }
 
 .home-monologue-copy {
@@ -522,6 +537,147 @@ main.site-main:has(.home-shell) {
   width: 100%;
   font-family: var(--font-hindi), 'Noto Sans Devanagari', sans-serif;
   letter-spacing: 0.02em;
+}
+
+/* Brutalist Music Widget */
+.music-widget-brutalist {
+  border-bottom: 2px solid var(--ink);
+  background: var(--cream);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: default;
+}
+
+.music-widget-brutalist:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.music-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem clamp(1.5rem, 5vw, 4rem);
+}
+
+.music-status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.music-indicator {
+  width: 10px;
+  height: 10px;
+  background: var(--signature-blue);
+  border-radius: 50%;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.music-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--sepia);
+  transition: color 0.2s ease;
+}
+
+.music-widget-brutalist:hover .music-label {
+  color: rgba(245, 240, 232, 0.6);
+}
+
+.music-track-info {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.music-title {
+  margin: 0;
+  font-family: "neue-haas-grotesk-display", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--warm-black);
+  transition: color 0.2s ease;
+}
+
+.music-widget-brutalist:hover .music-title {
+  color: var(--cream);
+}
+
+.music-artist {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sepia);
+  transition: color 0.2s ease;
+}
+
+.music-widget-brutalist:hover .music-artist {
+  color: rgba(245, 240, 232, 0.6);
+}
+
+.music-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 200px;
+}
+
+.music-time {
+  font-size: 0.65rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--sepia);
+  transition: color 0.2s ease;
+}
+
+.music-widget-brutalist:hover .music-time {
+  color: rgba(245, 240, 232, 0.6);
+}
+
+.music-progress-bar {
+  flex-grow: 1;
+  height: 2px;
+  background: var(--mist);
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.music-widget-brutalist:hover .music-progress-bar {
+  background: rgba(245, 240, 232, 0.2);
+}
+
+.music-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 35%; /* Static progress */
+  background: var(--ink);
+  transition: background-color 0.2s ease;
+}
+
+.music-widget-brutalist:hover .music-progress-fill {
+  background: var(--signature-blue);
+}
+
+@media (max-width: 980px) {
+  .music-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .music-progress-container {
+    width: 100%;
+  }
 }
 
 .projects-grid {
