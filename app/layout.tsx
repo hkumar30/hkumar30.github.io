@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, EB_Garamond } from 'next/font/google';
+import { DM_Sans, EB_Garamond, Noto_Sans_Devanagari } from 'next/font/google';
 import { seo } from '@/data/profile';
 import GrainShader from '@/components/GrainShader';
 import Nav from '@/components/Nav';
@@ -16,6 +16,12 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-dm-sans',
+});
+
+const hindiSans = Noto_Sans_Devanagari({
+  subsets: ['devanagari'],
+  display: 'swap',
+  variable: '--font-hindi',
 });
 
 export const metadata: Metadata = {
@@ -46,7 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${garamond.variable} ${dmSans.variable}`}>
+      <body className={`${garamond.variable} ${dmSans.variable} ${hindiSans.variable}`}>
         <noscript>{seo.noscript}</noscript>
         <Nav />
         <main className="site-main">{children}</main>

@@ -46,3 +46,8 @@ export type SocialLink = {
   label: string;
   href: string;
 };
+
+export type BilingualLabel = {
+  en: string;
+  hi: string;
+};

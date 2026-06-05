@@ -29,14 +29,9 @@ const itemVariants = {
 
 export default function ProjectGrid() {
   return (
-    <motion.div
-      className="project-grid-brutal"
-      variants={listVariants}
-      initial="hidden"
-      animate="show"
-    >
-      {projects.map((project, index) => (
-        <motion.div key={project.id} variants={itemVariants}>
+    <motion.div className="projects-grid" variants={listVariants} initial="hidden" animate="show">
+      {projects.slice(0, 4).map((project, index) => (
+        <motion.div key={project.id} variants={itemVariants} className="project-grid-item">
           <ProjectCard project={project} index={index} />
         </motion.div>
       ))}

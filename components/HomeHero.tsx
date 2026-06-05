@@ -2,21 +2,39 @@
 
 import Image from 'next/image';
 import { profile } from '@/data/profile';
+import PhoenixDateTime from '@/components/PhoenixDateTime';
+import { heroContent } from '@/data/siteContent';
 
 export default function HomeHero() {
+  const [firstName, lastName = ''] = profile.name.split(' ');
+
   return (
-    <section className="home-hero-raw" aria-label="Introduction">
-      <div className="home-portrait-wrap-raw">
+    <section className="home-hero-split" aria-label="Introduction hero">
+      <div className="home-hero-left">
+        <div className="home-hero-heading-wrap">
+          <h1 className="home-hero-name font-garamond" aria-label={profile.name}>
+            <span>{firstName.toUpperCase()}</span>
+            <span>{lastName.toUpperCase()}</span>
+          </h1>
+          <p className="home-hero-intro font-garamond">{heroContent.intro}</p>
+        </div>
+
+        <p className="home-hero-meta font-garamond">
+          <span>{heroContent.location.toUpperCase()}</span>
+          <PhoenixDateTime />
+        </p>
+      </div>
+
+      <div className="home-hero-right">
         <Image
           src={profile.heroImage}
           alt="Harsh Kumar portrait"
-          width={900}
-          height={1200}
+          fill
           priority
-          className="home-portrait-image"
+          sizes="(max-width: 1024px) 100vw, 45vw"
+          className="home-hero-image"
         />
       </div>
-      <h1 className="display-title home-hero-name-raw signature-ink">{profile.name}</h1>
     </section>
   );
 }

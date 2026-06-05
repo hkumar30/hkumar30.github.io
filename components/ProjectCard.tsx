@@ -16,12 +16,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   const order = String(index + 1).padStart(2, '0');
   const primaryLink = getPrimaryProjectLink(project);
   const techSummary = project.tech.slice(0, 3).join(' / ');
+  const awardSummary = project.award ? `${project.award.place} - ${project.award.event}` : null;
 
   return (
-    <article className="project-card project-card-brutal">
+    <article className="project-card">
       <p className="project-card-order section-label">{order}</p>
       <h3 className="project-card-title font-garamond">{project.title}</h3>
       <p className="project-card-copy">{project.tagline}</p>
+      {awardSummary ? <p className="project-card-award">{awardSummary}</p> : null}
 
       <div className="project-card-footer">
         <span className="project-card-year section-label">{project.year}</span>
