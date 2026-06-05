@@ -16,10 +16,10 @@ export default function HomeHero() {
             <span>{firstName.toUpperCase()}</span>
             <span>{lastName.toUpperCase()}</span>
           </h1>
-          <p className="home-hero-intro font-garamond">{heroContent.intro}</p>
+          <p className="home-hero-intro">{heroContent.intro}</p>
         </div>
 
-        <p className="home-hero-meta font-garamond">
+        <p className="home-hero-meta">
           <span>{heroContent.location.toUpperCase()}</span>
           <PhoenixDateTime />
         </p>

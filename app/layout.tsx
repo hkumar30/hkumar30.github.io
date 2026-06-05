@@ -3,6 +3,7 @@ import { DM_Sans, EB_Garamond, Noto_Sans_Devanagari } from 'next/font/google';
 import { seo } from '@/data/profile';
 import GrainShader from '@/components/GrainShader';
 import Nav from '@/components/Nav';
+import CustomCursor from '@/components/CustomCursor';
 import '@/styles/globals.css';
 
 const garamond = EB_Garamond({
@@ -57,6 +58,7 @@ export default function RootLayout({
       </head>
       <body className={`${garamond.variable} ${dmSans.variable} ${hindiSans.variable}`}>
         <noscript>{seo.noscript}</noscript>
+        <CustomCursor />
         <Nav />
         <main className="site-main">{children}</main>
         <GrainShader />
