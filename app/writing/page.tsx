@@ -1,11 +1,18 @@
 import { PageTransition, SectionTransition } from '@/components/PageTransition';
 import { writingPlaceholder } from '@/data/writing';
 
+import { routeLabels } from '@/data/siteContent';
+
 export default function WritingPage() {
   return (
     <PageTransition className="page-shell">
       <section className="route-intro">
-        <p className="section-label">Writing</p>
+        <p className="section-label bilingual-label">
+          <span>{routeLabels.writing.en}</span>
+          <span className="font-hindi" lang="hi">
+            {routeLabels.writing.hi}
+          </span>
+        </p>
         <h1 className="route-heading">Writing</h1>
         <p className="route-copy">Thoughts on algorithms, engineering, and building things.</p>
       </section>
