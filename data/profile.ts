@@ -17,6 +17,11 @@ export const profile = {
   },
   resumeHref: '/Harsh-Kumar-Resume.pdf',
   email: 'harshku5488@gmail.com',
+  currentTrack: {
+    title: 'Luminous Spaces',
+    artist: 'Jon Hopkins',
+    albumArt: '/images/album-art-placeholder.svg',
+  },
 };
 
 export const socialLinks: SocialLink[] = [

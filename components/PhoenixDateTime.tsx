@@ -3,14 +3,14 @@
 import { useEffect, useMemo, useState } from 'react';
 
 const DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'America/Phoenix',
+  timeZone: 'America/Los_Angeles',
   month: 'short',
   day: 'numeric',
   year: 'numeric',
 });
 
 const TIME_FORMATTER = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'America/Phoenix',
+  timeZone: 'America/Los_Angeles',
   hour: 'numeric',
   minute: '2-digit',
   hour12: true,

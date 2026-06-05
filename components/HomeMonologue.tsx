@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 
 const MONOLOGUE =
-  'I grew up in Delhi, India\u2009\u2014 surrounded by chaos but more interested in what happened when systems broke. Today I build production RAG systems for workflows that don\u2019t get a second chance to hallucinate in front of a real user. I care as much about how a system fails as I do about how it runs on a good day. I\u2019m drawn to the hard parts: tradeoff decisions, data that misbehaves, latency budgets that don\u2019t forgive.';
+  'I grew up in Delhi, India - surrounded by chaos but more interested in what happened when systems broke. Today I build production RAG systems for workflows that don\u2019t get a second chance to hallucinate in front of a real user. I care as much about how a system fails as I do about how it runs on a good day. I\u2019m drawn to the hard parts: tradeoff decisions, data that misbehaves, latency budgets that don\u2019t forgive.';
 
 export default function HomeMonologue() {
   return (
