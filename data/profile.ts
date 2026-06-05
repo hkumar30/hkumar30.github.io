@@ -6,15 +6,14 @@ export const profile = {
   heroImage: '/images/hero-portrait.png',
   aboutShortBio: [
     'I started tinkering with old computers at age five, editing configs and drivers just to get games running on my potato PC.',
-    'Today I build modern web apps, specialize in backend engineering, and enjoy algorithmic and systems-heavy work.',
+    'Today I build production RAG systems and AI infrastructure — the kind that has to hold up when real users depend on it, not just pass a demo.',
   ],
   aboutTeaser:
-    'I build modern web apps, specialize in backend engineering, and love diving into the theoretical side of computer science.',
+    'I build AI systems that have to work in production — RAG pipelines, prompt infrastructure, and the tooling that keeps them from quietly going wrong.',
   currently: {
-    building:
-      'Prompting systems and reliability tooling for production AI workflows at Mindspark.',
-    reading: 'Research papers and long-form essays on algorithms, complexity, and distributed systems.',
-    listening: 'Lo-fi focus playlists, ambient instrumentals, and interviews with builders.',
+    building: 'Prompt reliability systems and RAG pipelines at Mindspark that handle real traffic without hallucinating.',
+    reading: 'Designing Data-Intensive Applications by Kleppmann, and whatever distributed systems paper I can get through on a Sunday.',
+    listening: 'Four Tet, Jon Hopkins, and anything that sounds like it was made in a basement at 2am.',
   },
   resumeHref: '/Harsh-Kumar-Resume.pdf',
   email: 'harshku5488@gmail.com',
@@ -26,10 +25,10 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const seo = {
-  title: 'Harsh Kumar - Portfolio',
+  title: 'Harsh Kumar',
   description:
-    'Harsh Kumar - Developer. Building modern web apps, backend systems, and diving deep into computer science.',
-  ogDescription: 'Developer portfolio - web apps, backend engineering, and CS projects.',
+    'AI Engineer based in Redmond, WA. I build production RAG systems and AI infrastructure that ship reliably.',
+  ogDescription: 'AI Engineer — production RAG systems, prompt reliability, and AI infrastructure.',
   siteUrl: 'https://hkumar30.github.io',
-  noscript: 'Harsh Kumar - Developer Portfolio. Enable JavaScript to view this site.',
+  noscript: 'Harsh Kumar — AI Engineer. Enable JavaScript to view this site.',
 };

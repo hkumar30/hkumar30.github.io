@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { profile } from '@/data/profile';
 import { navItems } from '@/data/siteContent';
+import { HKLogo } from '@/components/HKLogo';
 
 function isActivePath(pathname: string, href: string) {
   if (href === '/') return pathname === '/';
@@ -83,8 +83,8 @@ export default function Nav() {
       {showNav ? (
         <header className="site-nav">
           <div className="site-nav-inner">
-            <Link href="/" className="site-logo">
-              {profile.name}
+            <Link href="/" className="site-logo" aria-label="Home">
+              <HKLogo className="hk-logo-nav" />
             </Link>
 
             <button

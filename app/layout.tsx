@@ -52,6 +52,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/sox3fll.css" />
+      </head>
       <body className={`${garamond.variable} ${dmSans.variable} ${hindiSans.variable}`}>
         <noscript>{seo.noscript}</noscript>
         <Nav />
