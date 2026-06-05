@@ -1,12 +1,12 @@
 import { PageTransition } from '@/components/PageTransition';
 import HomeHero from '@/components/HomeHero';
-import HomeIndex from '@/components/HomeIndex';
+import HomeMonologue from '@/components/HomeMonologue';
 
 export default function HomePage() {
   return (
     <PageTransition className="home-shell">
       <HomeHero />
-      <HomeIndex />
+      <HomeMonologue />
     </PageTransition>
   );
 }

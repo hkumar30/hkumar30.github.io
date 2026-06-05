@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { profile } from '@/data/profile';
 import { navItems } from '@/data/siteContent';
+import { HKLogo } from '@/components/HKLogo';
 
 function isActivePath(pathname: string, href: string) {
   if (href === '/') return pathname === '/';
@@ -34,15 +34,12 @@ export default function Nav() {
       const threshold = window.innerHeight;
       const shouldShow = window.scrollY >= threshold;
       setShowNav(shouldShow);
-      if (!shouldShow) {
-        setOpen(false);
-      }
+      if (!shouldShow) setOpen(false);
     };
 
     updateVisibility();
     window.addEventListener('scroll', updateVisibility, { passive: true });
     window.addEventListener('resize', updateVisibility);
-
     return () => {
       window.removeEventListener('scroll', updateVisibility);
       window.removeEventListener('resize', updateVisibility);
@@ -61,17 +58,12 @@ export default function Nav() {
       document.body.style.overflow = '';
       return;
     }
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setOpen(false);
-      }
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
     };
-
     document.addEventListener('keydown', onKeyDown);
     document.body.style.overflow = 'hidden';
     drawerNavRef.current?.querySelector<HTMLAnchorElement>('a')?.focus();
-
     return () => {
       document.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = '';
@@ -83,14 +75,32 @@ export default function Nav() {
       {showNav ? (
         <header className="site-nav">
           <div className="site-nav-inner">
-            <Link href="/" className="site-logo">
-              {profile.name}
+            <Link href="/" className="site-logo" aria-label="Home">
+              <HKLogo className="hk-logo-nav" />
             </Link>
 
+            {/* Desktop: inline links, no drawer */}
+            <nav className="site-nav-links-desktop" aria-label="Primary navigation">
+              {navItems.map((item) => {
+                const active = isActivePath(pathname, item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={active ? 'active-nav-link' : ''}
+                    aria-current={active ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Mobile: toggle for drawer */}
             <button
               ref={menuButtonRef}
               type="button"
-              className="menu-toggle"
+              className="menu-toggle-mobile"
               aria-expanded={isDrawerVisible}
               aria-controls="global-nav-drawer"
               onClick={() => setOpen((prev) => !prev)}
@@ -104,7 +114,11 @@ export default function Nav() {
       {isDrawerVisible ? (
         <>
           <div className="menu-overlay open" onClick={() => setOpen(false)} />
-          <aside id="global-nav-drawer" className="menu-drawer open" aria-label="Global navigation">
+          <aside
+            id="global-nav-drawer"
+            className="menu-drawer open"
+            aria-label="Global navigation"
+          >
             <nav ref={drawerNavRef} className="menu-drawer-nav" aria-label="Primary navigation">
               {navItems.map((item) => {
                 const active = isActivePath(pathname, item.href);

@@ -10,13 +10,13 @@ const listVariants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.07,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 16 },
   show: {
     opacity: 1,
     y: 0,
@@ -29,7 +29,13 @@ const itemVariants = {
 
 export default function ProjectGrid() {
   return (
-    <motion.div className="projects-grid" variants={listVariants} initial="hidden" animate="show">
+    <motion.div
+      className="projects-grid"
+      variants={listVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: '-60px' }}
+    >
       {projects.slice(0, 4).map((project, index) => (
         <motion.div key={project.id} variants={itemVariants} className="project-grid-item">
           <ProjectCard project={project} index={index} />

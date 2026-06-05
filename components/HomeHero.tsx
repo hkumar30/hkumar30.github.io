@@ -12,14 +12,14 @@ export default function HomeHero() {
     <section className="home-hero-split" aria-label="Introduction hero">
       <div className="home-hero-left">
         <div className="home-hero-heading-wrap">
-          <h1 className="home-hero-name font-garamond" aria-label={profile.name}>
+          <h1 className="home-hero-name" aria-label={profile.name}>
             <span>{firstName.toUpperCase()}</span>
             <span>{lastName.toUpperCase()}</span>
           </h1>
-          <p className="home-hero-intro font-garamond">{heroContent.intro}</p>
+          <p className="home-hero-intro">{heroContent.intro}</p>
         </div>
 
-        <p className="home-hero-meta font-garamond">
+        <p className="home-hero-meta">
           <span>{heroContent.location.toUpperCase()}</span>
           <PhoenixDateTime />
         </p>
