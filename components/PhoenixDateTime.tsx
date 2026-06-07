@@ -40,8 +40,8 @@ export default function PhoenixDateTime() {
 
   return (
     <>
-      <span>{values.date}</span>
-      <span>{values.time}</span>
+      <span className="home-hero-date">{values.date}</span>
+      <span className="home-hero-time">{values.time}</span>
     </>
   );
 }

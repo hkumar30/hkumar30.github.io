@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import { DM_Sans, EB_Garamond, Noto_Sans_Devanagari } from 'next/font/google';
+import {
+  DM_Sans,
+  EB_Garamond,
+  Noto_Sans_Devanagari,
+} from 'next/font/google';
 import { seo } from '@/data/profile';
 import GrainShader from '@/components/GrainShader';
 import Nav from '@/components/Nav';
