@@ -1452,7 +1452,7 @@ main.site-main:has(.home-shell) {
   }
 }
 
-  @media (max-width: 680px) {
+@media (max-width: 680px) {
   .home-hero-split {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -1460,7 +1460,9 @@ main.site-main:has(.home-shell) {
 
   .home-hero-left {
     padding-top: 5.9rem;
-    min-height: 68dvh;
+    height: 68svh;
+    min-height: 28rem;
+    max-height: 34rem;
   }
 
   .home-hero-intro {
