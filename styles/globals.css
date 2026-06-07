@@ -490,19 +490,19 @@ main.site-main:has(.home-shell) {
 
 /* Spinning text rings */
 .spinning-rings {
-  --ring-radius: clamp(14rem, 30vw, 30rem);
-  --ring-font-size: clamp(2.15rem, 5.6vw, 5.1rem);
+  --band-width: clamp(3.25rem, 8vw, 5.1rem);
+  --ring-radius: min(35vw, 34svh, 25.5rem);
+  --ring-font-size: clamp(1.45rem, 4.6vw, 3.55rem);
   position: relative;
+  z-index: 9991;
   isolation: isolate;
   background: var(--paper);
   border-top: 2px solid var(--ink);
   border-bottom: 2px solid var(--ink);
-  min-height: clamp(760px, 112vh, 1120px);
+  height: 100svh;
   overflow: hidden;
   display: grid;
   place-items: center;
-  perspective: 1200px;
-  perspective-origin: 50% 46%;
 }
 
 .spinning-rings-sr {
@@ -518,48 +518,40 @@ main.site-main:has(.home-shell) {
 }
 
 .spinning-rings-stage {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(112vw, 1240px);
-  height: min(78vw, 780px);
-  transform: translate(-50%, -50%) rotateZ(-13deg);
-  transform-style: preserve-3d;
+  position: relative;
+  z-index: 1;
+  width: calc((var(--ring-radius) * 2) + var(--band-width));
+  height: calc((var(--ring-radius) * 2) + var(--band-width));
 }
 
 .spinning-rings-band {
   --band-bg: var(--ink);
   --band-fg: var(--cream);
-  --band-rule: var(--cream);
+  --band-radius: var(--ring-radius);
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 0;
-  height: 0;
-  transform-style: preserve-3d;
-}
-
-.spinning-rings-band-dev {
-  --band-bg: var(--ink);
-  --band-fg: var(--cream);
-  --band-rule: var(--signature-blue);
-  transform: translate3d(-2vw, -4rem, 0);
+  inset: 0;
 }
 
 .spinning-rings-band-rag {
-  --ring-radius: clamp(13.5rem, 28.5vw, 28.5rem);
+  --band-radius: calc(var(--ring-radius) - var(--band-width));
+  inset: var(--band-width);
   --band-bg: var(--cream);
   --band-fg: var(--ink);
-  --band-rule: var(--ink);
-  transform: translate3d(2vw, 4rem, 0);
+}
+
+.spinning-rings-band-surface {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border: var(--band-width) solid var(--band-bg);
+  border-radius: 50%;
+  box-sizing: border-box;
 }
 
 .spinning-rings-track {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 0;
-  height: 0;
+  inset: 0;
+  z-index: 2;
   transform-style: preserve-3d;
   animation: spinning-rings-roll 34s linear infinite;
 }
@@ -573,13 +565,6 @@ main.site-main:has(.home-shell) {
   position: absolute;
   left: 50%;
   top: 50%;
-  display: grid;
-  place-items: center;
-  min-width: 0.76em;
-  height: 1.08em;
-  padding: 0 0.06em;
-  border-left: 1px solid var(--band-rule);
-  background: var(--band-bg);
   color: var(--band-fg);
   font-family: "neue-haas-grotesk-display", "NeueMontreal", var(--font-dm-sans), sans-serif;
   font-size: var(--ring-font-size);
@@ -591,10 +576,8 @@ main.site-main:has(.home-shell) {
   transform:
     translate(-50%, -50%)
     rotate(var(--angle))
-    translateY(calc(var(--ring-radius) * -1))
-    rotateX(90deg);
+    translateY(calc(var(--band-radius) * -1));
   transform-origin: 50% 50%;
-  backface-visibility: visible;
 }
 
 .spinning-rings-static {
@@ -631,52 +614,39 @@ main.site-main:has(.home-shell) {
 
 @keyframes spinning-rings-roll {
   0% {
-    transform: rotateX(-103deg) rotateZ(0deg);
-  }
-  50% {
-    transform: rotateX(-118deg) rotateZ(-180deg);
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotateX(-103deg) rotateZ(-360deg);
+    transform: rotate(-360deg);
   }
 }
 
 @keyframes spinning-rings-roll-reverse {
   0% {
-    transform: rotateX(-103deg) rotateZ(0deg);
-  }
-  50% {
-    transform: rotateX(-116deg) rotateZ(180deg);
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotateX(-103deg) rotateZ(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @media (max-width: 720px) {
   .spinning-rings {
-    --ring-radius: clamp(12rem, 56vw, 21rem);
-    --ring-font-size: clamp(1.65rem, 10vw, 3.2rem);
-    min-height: 780px;
+    --band-width: clamp(2.35rem, 13vw, 4.25rem);
+    --ring-radius: min(39vw, 31svh, 17rem);
+    --ring-font-size: clamp(1.2rem, 7vw, 2.35rem);
   }
 
   .spinning-rings-stage {
-    width: 128vw;
-    height: 940px;
-    transform: translate(-50%, -50%) rotateZ(-16deg);
-  }
-
-  .spinning-rings-band-dev {
-    transform: translate3d(-8vw, -3.25rem, 0);
-  }
-
-  .spinning-rings-band-rag {
-    --ring-radius: clamp(11.5rem, 52vw, 20rem);
-    transform: translate3d(8vw, 3.4rem, 0);
+    rotate: -8deg;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .spinning-rings-track {
+    animation: none;
+  }
+
   .spinning-rings-stage {
     display: none;
   }
