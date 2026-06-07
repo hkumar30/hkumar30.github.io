@@ -415,8 +415,8 @@ main.site-main:has(.home-shell) {
   font-style: normal;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 0.86;
-  font-size: clamp(3rem, 28cqi, 20rem);
+  line-height: 0.82;
+  font-size: clamp(3.35rem, 31cqi, 22.5rem);
   display: grid;
   color: #fff;
   text-transform: uppercase;
@@ -454,6 +454,13 @@ main.site-main:has(.home-shell) {
   min-height: 100%;
   height: 100%;
   background: var(--cream);
+  overflow: hidden;
+}
+
+.home-hero-image-motion {
+  position: absolute;
+  inset: -12% 0 -18%;
+  will-change: transform;
 }
 
 .home-hero-image {
@@ -490,9 +497,10 @@ main.site-main:has(.home-shell) {
 
 /* Spinning text rings */
 .spinning-rings {
-  --band-width: clamp(3.25rem, 8vw, 5.1rem);
-  --ring-radius: min(35vw, 34svh, 25.5rem);
-  --ring-font-size: clamp(1.45rem, 4.6vw, 3.55rem);
+  --ring-radius: min(37vw, 58svh, 36rem);
+  --ring-font-size: clamp(1.28rem, 4vw, 4.65rem);
+  --ring-offset: clamp(1.55rem, 4.8vw, 3.5rem);
+  --ring-lift: clamp(2.75rem, 10.5svh, 5.5rem);
   position: relative;
   z-index: 9991;
   isolation: isolate;
@@ -501,8 +509,8 @@ main.site-main:has(.home-shell) {
   border-bottom: 2px solid var(--ink);
   height: 100svh;
   overflow: hidden;
-  display: grid;
-  place-items: center;
+  perspective: 980px;
+  perspective-origin: 50% 50%;
 }
 
 .spinning-rings-sr {
@@ -518,54 +526,64 @@ main.site-main:has(.home-shell) {
 }
 
 .spinning-rings-stage {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: calc(50% - var(--ring-lift));
   z-index: 1;
-  width: calc((var(--ring-radius) * 2) + var(--band-width));
-  height: calc((var(--ring-radius) * 2) + var(--band-width));
+  width: 0;
+  height: 0;
+  transform:
+    translate(-50%, -50%)
+    rotateZ(-16deg);
+  transform-origin: center;
+  transform-style: preserve-3d;
 }
 
 .spinning-rings-band {
-  --band-bg: var(--ink);
-  --band-fg: var(--cream);
-  --band-radius: var(--ring-radius);
+  --panel-bg: var(--ink);
+  --panel-fg: var(--cream);
   position: absolute;
-  inset: 0;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform: translateY(calc(var(--ring-offset) * -1));
+  transform-style: preserve-3d;
 }
 
 .spinning-rings-band-rag {
-  --band-radius: calc(var(--ring-radius) - var(--band-width));
-  inset: var(--band-width);
-  --band-bg: var(--cream);
-  --band-fg: var(--ink);
-}
-
-.spinning-rings-band-surface {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  border: var(--band-width) solid var(--band-bg);
-  border-radius: 50%;
-  box-sizing: border-box;
+  --panel-bg: var(--cream);
+  --panel-fg: var(--ink);
+  transform: translateY(var(--ring-offset));
 }
 
 .spinning-rings-track {
   position: absolute;
-  inset: 0;
-  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
   transform-style: preserve-3d;
-  animation: spinning-rings-roll 34s linear infinite;
+  animation: spinning-rings-roll 38s linear infinite;
 }
 
 .spinning-rings-band-rag .spinning-rings-track {
   animation-name: spinning-rings-roll-reverse;
-  animation-duration: 46s;
+  animation-duration: 48s;
 }
 
 .spinning-rings-letter {
   position: absolute;
   left: 50%;
   top: 50%;
-  color: var(--band-fg);
+  display: grid;
+  place-items: center;
+  min-width: 1.08em;
+  height: 1.12em;
+  padding: 0 0.09em;
+  background: var(--panel-bg);
+  box-shadow: 0 0 0 0.09em var(--panel-bg);
+  color: var(--panel-fg);
   font-family: "neue-haas-grotesk-display", "NeueMontreal", var(--font-dm-sans), sans-serif;
   font-size: var(--ring-font-size);
   font-weight: 700;
@@ -576,8 +594,10 @@ main.site-main:has(.home-shell) {
   transform:
     translate(-50%, -50%)
     rotate(var(--angle))
-    translateY(calc(var(--band-radius) * -1));
+    translateY(calc(var(--ring-radius) * -1))
+    rotateX(90deg);
   transform-origin: 50% 50%;
+  backface-visibility: visible;
 }
 
 .spinning-rings-static {
@@ -614,31 +634,41 @@ main.site-main:has(.home-shell) {
 
 @keyframes spinning-rings-roll {
   0% {
-    transform: rotate(0deg);
+    transform: rotateX(-102deg) rotateZ(0deg);
+  }
+  50% {
+    transform: rotateX(-116deg) rotateZ(-180deg);
   }
   100% {
-    transform: rotate(-360deg);
+    transform: rotateX(-102deg) rotateZ(-360deg);
   }
 }
 
 @keyframes spinning-rings-roll-reverse {
   0% {
-    transform: rotate(0deg);
+    transform: rotateX(-102deg) rotateZ(0deg);
+  }
+  50% {
+    transform: rotateX(-113deg) rotateZ(180deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotateX(-102deg) rotateZ(360deg);
   }
 }
 
 @media (max-width: 720px) {
   .spinning-rings {
-    --band-width: clamp(2.35rem, 13vw, 4.25rem);
-    --ring-radius: min(39vw, 31svh, 17rem);
-    --ring-font-size: clamp(1.2rem, 7vw, 2.35rem);
+    --ring-radius: min(42vw, 42svh, 18rem);
+    --ring-font-size: clamp(0.78rem, 5vw, 1.5rem);
+    --ring-offset: clamp(1rem, 7vw, 1.8rem);
+    --ring-lift: clamp(1.35rem, 4svh, 2.25rem);
+    perspective: 760px;
   }
 
   .spinning-rings-stage {
-    rotate: -8deg;
+    transform:
+      translate(-50%, -50%)
+      rotateZ(-15deg);
   }
 }
 
@@ -686,12 +716,11 @@ main.site-main:has(.home-shell) {
 
 .home-monologue-copy {
   margin: 0;
-  font-family: var(--font-garamond), serif;
-  font-feature-settings: 'liga' 1, 'kern' 1, 'onum' 1;
-  font-size: clamp(1.9rem, 4vw, 3.6rem);
-  line-height: 1.28;
+  font-family: "neue-haas-grotesk-text", 'NeueMontreal', var(--font-dm-sans), sans-serif;
+  font-size: clamp(1.55rem, 3vw, 2.85rem);
+  line-height: 1.18;
   color: var(--ink);
-  max-width: 24ch;
+  max-width: 31ch;
   position: relative;
   z-index: 1;
 }
@@ -1383,12 +1412,25 @@ main.site-main:has(.home-shell) {
   }
 
   .home-hero-intro {
-    max-width: 35ch;
+    display: none;
+  }
+
+  .home-hero-meta {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .home-hero-date {
+    display: none;
   }
 
   .home-hero-right {
     min-height: 32rem;
     height: 32rem;
+  }
+
+  .home-hero-image-motion {
+    inset: -8% 0 -20%;
   }
 
   .experience-item {

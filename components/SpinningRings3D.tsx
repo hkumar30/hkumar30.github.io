@@ -16,12 +16,12 @@ const RIBBONS: RibbonSpec[] = [
   {
     className: 'spinning-rings-band-dev',
     phrase: 'HARSHK.DEV',
-    minCharacters: 52,
+    minCharacters: 76,
   },
   {
     className: 'spinning-rings-band-rag',
     phrase: 'RAG SYSTEMS',
-    minCharacters: 52,
+    minCharacters: 76,
   },
 ];
 
@@ -52,7 +52,6 @@ export default function SpinningRings3D() {
               key={ribbon.phrase}
               className={`spinning-rings-band ${ribbon.className}`}
             >
-              <div className="spinning-rings-band-surface" />
               <div className="spinning-rings-track">
                 {letters.map((letter, index) => {
                   const angle = `${(360 / letters.length) * index}deg`;
