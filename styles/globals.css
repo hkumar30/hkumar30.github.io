@@ -488,6 +488,205 @@ main.site-main:has(.home-shell) {
   font-size: 1.4rem;
 }
 
+/* Spinning text rings */
+.spinning-rings {
+  --ring-radius: clamp(14rem, 30vw, 30rem);
+  --ring-font-size: clamp(2.15rem, 5.6vw, 5.1rem);
+  position: relative;
+  isolation: isolate;
+  background: var(--paper);
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  min-height: clamp(760px, 112vh, 1120px);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+  perspective-origin: 50% 46%;
+}
+
+.spinning-rings-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.spinning-rings-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(112vw, 1240px);
+  height: min(78vw, 780px);
+  transform: translate(-50%, -50%) rotateZ(-13deg);
+  transform-style: preserve-3d;
+}
+
+.spinning-rings-band {
+  --band-bg: var(--ink);
+  --band-fg: var(--cream);
+  --band-rule: var(--cream);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+}
+
+.spinning-rings-band-dev {
+  --band-bg: var(--ink);
+  --band-fg: var(--cream);
+  --band-rule: var(--signature-blue);
+  transform: translate3d(-2vw, -4rem, 0);
+}
+
+.spinning-rings-band-rag {
+  --ring-radius: clamp(13.5rem, 28.5vw, 28.5rem);
+  --band-bg: var(--cream);
+  --band-fg: var(--ink);
+  --band-rule: var(--ink);
+  transform: translate3d(2vw, 4rem, 0);
+}
+
+.spinning-rings-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  animation: spinning-rings-roll 34s linear infinite;
+}
+
+.spinning-rings-band-rag .spinning-rings-track {
+  animation-name: spinning-rings-roll-reverse;
+  animation-duration: 46s;
+}
+
+.spinning-rings-letter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  min-width: 0.76em;
+  height: 1.08em;
+  padding: 0 0.06em;
+  border-left: 1px solid var(--band-rule);
+  background: var(--band-bg);
+  color: var(--band-fg);
+  font-family: "neue-haas-grotesk-display", "NeueMontreal", var(--font-dm-sans), sans-serif;
+  font-size: var(--ring-font-size);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: pre;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--angle))
+    translateY(calc(var(--ring-radius) * -1))
+    rotateX(90deg);
+  transform-origin: 50% 50%;
+  backface-visibility: visible;
+}
+
+.spinning-rings-static {
+  display: none;
+  position: relative;
+  z-index: 1;
+  width: min(100%, 960px);
+  padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 8vw, 6rem);
+  font-family: "neue-haas-grotesk-display", "NeueMontreal", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1;
+  background: var(--paper);
+}
+
+.spinning-rings-static-row {
+  display: block;
+  text-align: center;
+}
+
+.spinning-rings-static-dev,
+.spinning-rings-static-rag {
+  font-size: clamp(3rem, 10vw, 7.5rem);
+}
+
+.spinning-rings-static-dev {
+  color: var(--ink);
+}
+
+.spinning-rings-static-rag {
+  color: var(--signature-blue);
+}
+
+@keyframes spinning-rings-roll {
+  0% {
+    transform: rotateX(-103deg) rotateZ(0deg);
+  }
+  50% {
+    transform: rotateX(-118deg) rotateZ(-180deg);
+  }
+  100% {
+    transform: rotateX(-103deg) rotateZ(-360deg);
+  }
+}
+
+@keyframes spinning-rings-roll-reverse {
+  0% {
+    transform: rotateX(-103deg) rotateZ(0deg);
+  }
+  50% {
+    transform: rotateX(-116deg) rotateZ(180deg);
+  }
+  100% {
+    transform: rotateX(-103deg) rotateZ(360deg);
+  }
+}
+
+@media (max-width: 720px) {
+  .spinning-rings {
+    --ring-radius: clamp(12rem, 56vw, 21rem);
+    --ring-font-size: clamp(1.65rem, 10vw, 3.2rem);
+    min-height: 780px;
+  }
+
+  .spinning-rings-stage {
+    width: 128vw;
+    height: 940px;
+    transform: translate(-50%, -50%) rotateZ(-16deg);
+  }
+
+  .spinning-rings-band-dev {
+    transform: translate3d(-8vw, -3.25rem, 0);
+  }
+
+  .spinning-rings-band-rag {
+    --ring-radius: clamp(11.5rem, 52vw, 20rem);
+    transform: translate3d(8vw, 3.4rem, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinning-rings-stage {
+    display: none;
+  }
+
+  .spinning-rings-static {
+    display: grid;
+    gap: 0.8rem;
+  }
+}
+
 /* Home content row */
 .home-content-row {
   display: grid;
