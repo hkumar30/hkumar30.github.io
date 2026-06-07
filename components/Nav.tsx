@@ -72,7 +72,11 @@ export default function Nav() {
 
   return (
     <>
-      <header className={`site-nav ${showNav ? 'is-visible' : ''}`}>
+      <header
+        className={`site-nav ${pathname === '/' ? 'site-nav-on-home' : ''} ${
+          showNav ? 'is-visible' : ''
+        }`}
+      >
         <div className="site-nav-inner">
           <Link href="/" className="site-logo" aria-label="Home">
             <HKLogo className="hk-logo-nav" />

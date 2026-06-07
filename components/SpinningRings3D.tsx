@@ -16,12 +16,12 @@ const RIBBONS: RibbonSpec[] = [
   {
     className: 'spinning-rings-band-dev',
     phrase: 'HARSHK.DEV',
-    minCharacters: 76,
+    minCharacters: 64,
   },
   {
     className: 'spinning-rings-band-rag',
     phrase: 'RAG SYSTEMS',
-    minCharacters: 76,
+    minCharacters: 64,
   },
 ];
 

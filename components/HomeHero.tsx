@@ -14,7 +14,7 @@ export default function HomeHero() {
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '-14%']);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '-22%']);
   const [firstName, lastName = ''] = profile.name.split(' ');
 
   return (
