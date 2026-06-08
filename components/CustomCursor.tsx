@@ -25,7 +25,7 @@ export default function CustomCursor() {
       mouseY = e.clientY;
 
       if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        dotRef.current.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
       }
 
       if (!visible) setVisible(true);
@@ -39,7 +39,7 @@ export default function CustomCursor() {
         ringX += (mouseX - ringX) * 0.14;
         ringY += (mouseY - ringY) * 0.14;
         if (ringRef.current) {
-          ringRef.current.style.transform = `translate(${ringX}px, ${ringY}px)`;
+          ringRef.current.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
         }
       }
       rafId = requestAnimationFrame(animateRing);
