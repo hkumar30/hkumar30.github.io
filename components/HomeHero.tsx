@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { profile } from '@/data/profile';
 import PhoenixDateTime from '@/components/PhoenixDateTime';
@@ -9,6 +9,7 @@ import { heroContent } from '@/data/siteContent';
 
 export default function HomeHero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -57,7 +58,8 @@ export default function HomeHero() {
             fill
             priority
             sizes="(max-width: 1024px) 100vw, 45vw"
-            className="home-hero-image"
+            className={`home-hero-image ${imageLoaded ? 'is-loaded' : ''}`}
+            onLoad={() => setImageLoaded(true)}
           />
         </motion.div>
       </motion.div>
