@@ -1,11 +1,12 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { profile } from '@/data/profile';
 import PhoenixDateTime from '@/components/PhoenixDateTime';
-import { heroContent } from '@/data/siteContent';
+import { heroContent, navItems } from '@/data/siteContent';
 
 export default function HomeHero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -32,6 +33,28 @@ export default function HomeHero() {
           </h1>
           <p className="home-hero-intro">{heroContent.intro}</p>
         </div>
+
+        <nav className="home-hero-index-nav" aria-label="Primary navigation">
+          {navItems.map((item, index) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="home-hero-index-link"
+              aria-label={item.label}
+            >
+              <span className="home-hero-index-number">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span className="home-hero-index-label">{item.label}</span>
+              <span className="home-hero-index-hi font-hindi" lang="hi">
+                {item.labelHi}
+              </span>
+              <span className="home-hero-index-arrow" aria-hidden="true">
+                &rarr;
+              </span>
+            </Link>
+          ))}
+        </nav>
 
         <p className="home-hero-meta">
           <span>{heroContent.location.toUpperCase()}</span>

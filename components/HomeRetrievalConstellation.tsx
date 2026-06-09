@@ -206,7 +206,7 @@ export default function HomeRetrievalConstellation() {
 
           <dl className="retrieval-constellation-node-detail">
             <div>
-              <dt>Selected Source</dt>
+              <dt>Selected Signal</dt>
               <dd>{selectedNode.title}</dd>
             </div>
             <div>
@@ -214,7 +214,7 @@ export default function HomeRetrievalConstellation() {
               <dd>{selectedNode.type}</dd>
             </div>
             <div>
-              <dt>Score</dt>
+              <dt>Weight</dt>
               <dd>{selectedNode.score}</dd>
             </div>
             <div>
