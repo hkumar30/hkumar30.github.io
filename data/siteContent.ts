@@ -1,13 +1,14 @@
 export type NavItem = {
   href: string;
   label: string;
+  labelHi: string;
 };
 
 export const navItems: NavItem[] = [
-  { href: '/projects', label: 'Projects' },
-  { href: '/work', label: 'Work' },
-  { href: '/writing', label: 'Writing' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/projects', label: 'Projects', labelHi: 'परियोजनाएं' },
+  { href: '/work', label: 'Work', labelHi: 'कार्य' },
+  { href: '/writing', label: 'Writing', labelHi: 'लेखन' },
+  { href: '/contact', label: 'Contact', labelHi: 'संपर्क' },
 ];
 
 export const heroContent = {
@@ -20,7 +21,7 @@ export const retrievalConstellation = {
   kicker: 'Interactive Lab',
   title: 'Retrieval Constellation',
   description:
-    'A small map of what a production RAG system sees before it decides what to trust.',
+    'A small map of what a production RAG pipeline weighs before it lets an answer ship.',
   fieldNote:
     'I grew up in New Delhi - surrounded by chaos but more interested in what happened when systems broke. Today I build production RAG systems for workflows that do not get a second chance to hallucinate in front of a real user. I care as much about how a system fails as I do about how it runs on a good day.',
   scenarios: [
@@ -30,7 +31,7 @@ export const retrievalConstellation = {
       status: 'Healthy Retrieval',
       query: 'How do we spot source drift before users do?',
       summary:
-        'The top context agrees with fresh traces and eval notes, so the answer can cite confidently.',
+        'Fresh sources agree with traces and eval notes, so the answer can cite confidently.',
       diagnosis: 'Pass with citation freshness monitoring.',
       nodes: [
         {

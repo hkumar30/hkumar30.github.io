@@ -6,7 +6,7 @@ type HomeTheme = 'dark' | 'light';
 
 const STORAGE_KEY = 'home-theme-v2';
 const THEME_BACKGROUNDS: Record<HomeTheme, string> = {
-  dark: '#011993',
+  dark: '#001175',
   light: '#fcf0ec',
 };
 

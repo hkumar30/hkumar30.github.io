@@ -115,6 +115,7 @@ function MonologueTextLine({
 
 export default function HomeMonologue() {
   const sectionRef = useRef<HTMLElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const shotTimersRef = useRef<number[]>([]);
   const shotIdRef = useRef(0);
   const [activeLine, setActiveLine] = useState(0);
@@ -174,12 +175,18 @@ export default function HomeMonologue() {
     };
   }, []);
 
-  const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
-    if (prefersReducedMotion || event.pointerType === 'touch') return;
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
+  const syncCursorToPointer = (event: PointerEvent<HTMLElement>) => {
+    const rect =
+      stickyRef.current?.getBoundingClientRect() ??
+      event.currentTarget.getBoundingClientRect();
+    const x = Math.min(
+      100,
+      Math.max(0, ((event.clientX - rect.left) / Math.max(1, rect.width)) * 100),
+    );
+    const y = Math.min(
+      100,
+      Math.max(0, ((event.clientY - rect.top) / Math.max(1, rect.height)) * 100),
+    );
     const shiftX = ((x - 50) / 50) * 16;
     const shiftY = ((y - 50) / 50) * 12;
 
@@ -187,6 +194,14 @@ export default function HomeMonologue() {
     event.currentTarget.style.setProperty('--monologue-cursor-y', `${y}%`);
     event.currentTarget.style.setProperty('--monologue-shift-x', `${shiftX}px`);
     event.currentTarget.style.setProperty('--monologue-shift-y', `${shiftY}px`);
+
+    return { rect, x, y, shiftX, shiftY };
+  };
+
+  const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
+    if (prefersReducedMotion || event.pointerType === 'touch') return;
+
+    syncCursorToPointer(event);
   };
 
   const handlePointerLeave = (event: PointerEvent<HTMLElement>) => {
@@ -199,11 +214,7 @@ export default function HomeMonologue() {
   const handlePointerDown = (event: PointerEvent<HTMLElement>) => {
     if (prefersReducedMotion || !event.isPrimary) return;
 
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-    const shiftX = ((x - 50) / 50) * 16;
-    const shiftY = ((y - 50) / 50) * 12;
+    const { rect, x, y } = syncCursorToPointer(event);
     const angle = Math.atan2(y - 50, x - 50) * (180 / Math.PI);
     const distance = Math.round(
       Math.min(280, Math.max(120, Math.hypot(rect.width, rect.height) * 0.13)),
@@ -217,10 +228,6 @@ export default function HomeMonologue() {
     };
 
     shotIdRef.current += 1;
-    event.currentTarget.style.setProperty('--monologue-cursor-x', `${x}%`);
-    event.currentTarget.style.setProperty('--monologue-cursor-y', `${y}%`);
-    event.currentTarget.style.setProperty('--monologue-shift-x', `${shiftX}px`);
-    event.currentTarget.style.setProperty('--monologue-shift-y', `${shiftY}px`);
 
     setShots((currentShots) => [...currentShots.slice(-4), shot]);
 
@@ -250,7 +257,7 @@ export default function HomeMonologue() {
     >
       <p className="sr-only">{MONOLOGUE_TEXT}</p>
 
-      <div className="home-monologue-sticky">
+      <div ref={stickyRef} className="home-monologue-sticky">
         <div className="home-monologue-graphic" aria-hidden="true">
           <svg
             className="home-monologue-blueprint"

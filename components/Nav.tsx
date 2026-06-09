@@ -25,25 +25,13 @@ export default function Nav() {
   }, [pathname]);
 
   useEffect(() => {
-    if (pathname !== '/') {
-      setShowNav(true);
+    if (pathname === '/') {
+      setShowNav(false);
+      setOpen(false);
       return;
     }
 
-    const updateVisibility = () => {
-      const threshold = window.innerHeight;
-      const shouldShow = window.scrollY >= threshold;
-      setShowNav(shouldShow);
-      if (!shouldShow) setOpen(false);
-    };
-
-    updateVisibility();
-    window.addEventListener('scroll', updateVisibility, { passive: true });
-    window.addEventListener('resize', updateVisibility);
-    return () => {
-      window.removeEventListener('scroll', updateVisibility);
-      window.removeEventListener('resize', updateVisibility);
-    };
+    setShowNav(true);
   }, [pathname]);
 
   useEffect(() => {
@@ -69,6 +57,8 @@ export default function Nav() {
       document.body.style.overflow = '';
     };
   }, [isDrawerVisible]);
+
+  if (pathname === '/') return null;
 
   return (
     <>
