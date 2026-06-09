@@ -238,6 +238,11 @@ main.site-main:has(.home-shell) {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
+  background: var(--cream);
+}
+
+.site-nav-on-home.is-visible {
+  background: var(--signature-blue);
 }
 
 .site-nav-inner {
@@ -248,6 +253,10 @@ main.site-main:has(.home-shell) {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+}
+
+.site-nav-on-home .site-nav-inner {
+  padding-right: clamp(5.8rem, 10vw, 8rem);
 }
 
 .site-logo {
@@ -316,7 +325,9 @@ main.site-main:has(.home-shell) {
 }
 
 .site-nav-on-home .hk-logo {
-  outline: 1px solid rgba(245, 240, 232, 0.55);
+  background: var(--cream);
+  color: var(--signature-blue);
+  outline: 1px solid rgba(245, 240, 232, 0.48);
   outline-offset: 0;
 }
 
@@ -342,6 +353,42 @@ main.site-main:has(.home-shell) {
   background: #fff;
 }
 
+html[data-home-theme='light'] .site-nav-on-home.is-visible {
+  background: #fcf0ec;
+}
+
+html[data-home-theme='light'] .site-nav-on-home .site-logo {
+  color: #ef3c3c;
+}
+
+html[data-home-theme='light'] .site-nav-on-home .hk-logo {
+  background: #ef3c3c;
+  color: #fcf0ec;
+  outline-color: rgba(239, 60, 60, 0.42);
+}
+
+html[data-home-theme='light'] .site-nav-on-home .site-logo:focus-visible {
+  outline-color: #ef3c3c;
+}
+
+html[data-home-theme='light'] .site-nav-on-home .site-nav-links-desktop a {
+  color: var(--ink);
+}
+
+html[data-home-theme='light'] .site-nav-on-home .site-nav-links-desktop a::after {
+  background: #ef3c3c;
+}
+
+html[data-home-theme='light'] .site-nav-on-home .site-nav-links-desktop a:hover,
+html[data-home-theme='light'] .site-nav-on-home .site-nav-links-desktop a:focus-visible,
+html[data-home-theme='light'] .site-nav-on-home .site-nav-links-desktop a.active-nav-link {
+  color: #ef3c3c;
+}
+
+html[data-home-theme='light'] .site-nav-on-home .site-nav-links-desktop a.active-nav-link::after {
+  background: #ef3c3c;
+}
+
 /* Mobile-only toggle */
 .menu-toggle-mobile {
   display: none;
@@ -359,6 +406,10 @@ main.site-main:has(.home-shell) {
 
 .site-nav-on-home .menu-toggle-mobile {
   color: var(--cream);
+}
+
+html[data-home-theme='light'] .site-nav-on-home .menu-toggle-mobile {
+  color: #ef3c3c;
 }
 
 .menu-overlay {
@@ -432,8 +483,120 @@ main.site-main:has(.home-shell) {
 }
 
 .home-shell {
+  --home-paper: var(--signature-blue);
+  --home-accent: var(--cream);
+  --home-accent-strong: #fff;
+  --home-accent-deep: #d9d0c2;
+  --home-ink: var(--cream);
+  --home-muted: rgba(245, 240, 232, 0.72);
+  --home-rule: rgba(245, 240, 232, 0.32);
+  --home-grid-strong: rgba(245, 240, 232, 0.055);
+  --home-grid-soft: rgba(245, 240, 232, 0.035);
+  --home-map-accent: rgba(245, 240, 232, 0.1);
+  --home-map-shadow: rgba(13, 11, 9, 0.2);
+  --home-map-surface: rgba(1, 25, 147, 0.72);
+  --home-node-bg: rgba(245, 240, 232, 0.94);
+  --home-node-fg: var(--signature-blue);
+  --home-node-active-fg: var(--signature-blue);
+  --home-orbit-primary-bg: var(--cream);
+  --home-orbit-primary-fg: var(--signature-blue);
+  --home-orbit-secondary-bg: var(--warm-black);
+  --home-orbit-secondary-fg: var(--cream);
   display: grid;
+  background: var(--home-paper);
+  background-color: var(--home-paper);
+  color: var(--home-ink);
+  transition: background-color 0.24s ease, color 0.24s ease;
+}
+
+html[data-home-theme='light'] .home-shell {
+  --home-paper: #fcf0ec;
+  --home-accent: #ef3c3c;
+  --home-accent-strong: #ef3c3c;
+  --home-accent-deep: #b9252c;
+  --home-ink: #1a1612;
+  --home-muted: rgba(26, 22, 18, 0.62);
+  --home-rule: rgba(239, 60, 60, 0.28);
+  --home-grid-strong: rgba(239, 60, 60, 0.055);
+  --home-grid-soft: rgba(239, 60, 60, 0.038);
+  --home-map-accent: rgba(239, 60, 60, 0.08);
+  --home-map-shadow: rgba(26, 22, 18, 0.055);
+  --home-map-surface: rgba(252, 240, 236, 0.72);
+  --home-node-bg: rgba(252, 240, 236, 0.94);
+  --home-node-fg: #1a1612;
+  --home-node-active-fg: #ef3c3c;
+  --home-orbit-primary-bg: #ef3c3c;
+  --home-orbit-primary-fg: #fcf0ec;
+  --home-orbit-secondary-bg: #1a1612;
+  --home-orbit-secondary-fg: #fcf0ec;
+  background: #fcf0ec;
+  background-color: #fcf0ec;
+}
+
+html[data-home-theme='light'] .retrieval-constellation {
+  background: #fcf0ec;
+  background-color: #fcf0ec;
+}
+
+.home-theme-toggle {
+  position: fixed;
+  top: 1.15rem;
+  right: clamp(1rem, 3vw, 2.75rem);
+  z-index: 10070;
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  width: 6.8rem;
+  border: 1px solid rgba(245, 240, 232, 0.52);
+  border-radius: 0;
+  padding: 0.16rem;
   background: var(--signature-blue);
+  color: var(--cream);
+  font-family: "neue-haas-grotesk-text", 'NeueMontreal', var(--font-dm-sans), sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease;
+}
+
+.home-theme-toggle span {
+  padding: 0.45rem 0.32rem 0.4rem;
+  color: inherit;
+  text-align: center;
+  opacity: 0.62;
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.home-theme-toggle span.is-active {
+  background: var(--cream);
+  color: var(--signature-blue);
+  opacity: 1;
+}
+
+.home-theme-toggle:hover,
+.home-theme-toggle:focus-visible {
+  border-color: var(--cream);
+  outline: 0;
+}
+
+html[data-home-theme='light'] .home-theme-toggle {
+  background: #fcf0ec;
+  border-color: rgba(239, 60, 60, 0.42);
+  color: #ef3c3c;
+}
+
+html[data-home-theme='light'] .home-theme-toggle span.is-active {
+  background: #ef3c3c;
+  color: #fcf0ec;
 }
 
 .home-hero-split {
@@ -449,7 +612,7 @@ main.site-main:has(.home-shell) {
   display: grid;
   align-content: space-between;
   gap: 1.2rem;
-  background: var(--signature-blue);
+  background: var(--home-paper);
   min-width: 0;
   overflow: hidden;
 }
@@ -470,24 +633,25 @@ main.site-main:has(.home-shell) {
   line-height: 0.86;
   font-size: clamp(3rem, 28cqi, 20rem);
   display: grid;
-  color: #fff;
+  color: var(--home-accent);
   text-transform: uppercase;
   word-break: break-word;
 }
 
 .home-hero-intro {
+  display: none;
   margin: 0.25rem 0 0;
   font-family: "neue-haas-grotesk-text", 'NeueMontreal', sans-serif;
   font-size: 0.8rem;
   line-height: 1.5;
   max-width: 38ch;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--home-muted);
 }
 
 .home-hero-meta {
   margin: 0;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  border-top: 1px solid var(--home-rule);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -497,7 +661,7 @@ main.site-main:has(.home-shell) {
   font-size: 0.68rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--home-accent);
   min-width: 0;
 }
 
@@ -505,7 +669,7 @@ main.site-main:has(.home-shell) {
   position: relative;
   min-height: 100%;
   height: 100%;
-  background: var(--signature-blue);
+  background: var(--home-paper);
   overflow: hidden;
 }
 
@@ -802,18 +966,61 @@ main.site-main:has(.home-shell) {
 
 /* Retrieval constellation */
 .retrieval-constellation {
-  background: var(--signature-blue);
-  color: var(--cream);
+  --observatory-paper: var(--home-paper);
+  --observatory-red: var(--home-accent);
+  --observatory-red-deep: var(--home-accent-deep);
+  --observatory-ink: var(--home-ink);
+  --observatory-muted: var(--home-muted);
+  --observatory-rule: var(--home-rule);
+  --observatory-grid-strong: var(--home-grid-strong);
+  --observatory-grid-soft: var(--home-grid-soft);
+  --observatory-map-accent: var(--home-map-accent);
+  --observatory-map-shadow: var(--home-map-shadow);
+  --observatory-map-surface: var(--home-map-surface);
+  --observatory-node-bg: var(--home-node-bg);
+  --observatory-node-fg: var(--home-node-fg);
+  --observatory-node-active-fg: var(--home-node-active-fg);
+  --observatory-orbit-primary-bg: var(--home-orbit-primary-bg);
+  --observatory-orbit-primary-fg: var(--home-orbit-primary-fg);
+  --observatory-orbit-secondary-bg: var(--home-orbit-secondary-bg);
+  --observatory-orbit-secondary-fg: var(--home-orbit-secondary-fg);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--observatory-paper);
+  background-color: var(--observatory-paper);
+  color: var(--observatory-ink);
   scroll-margin-top: 5rem;
-  padding: clamp(4rem, 9vw, 8rem) clamp(1.25rem, 5vw, 4rem)
-    clamp(4.5rem, 10vw, 9rem);
+  padding: clamp(4.8rem, 9vw, 8rem) clamp(1.25rem, 5vw, 4rem)
+    clamp(5rem, 10vw, 9rem);
   display: grid;
-  gap: clamp(2.25rem, 5vw, 4.5rem);
+  gap: clamp(2.4rem, 5vw, 4.75rem);
+  border-top: 1px solid var(--observatory-rule);
+}
+
+.retrieval-constellation::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(
+      90deg,
+      var(--observatory-grid-strong) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      0deg,
+      var(--observatory-grid-soft) 1px,
+      transparent 1px
+    );
+  background-size: clamp(5rem, 12vw, 12rem) clamp(5rem, 12vw, 12rem);
+  mask-image: linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent);
 }
 
 .retrieval-constellation-intro {
   display: grid;
-  grid-template-columns: minmax(6.5rem, 0.3fr) minmax(0, 1fr);
+  grid-template-columns: minmax(6.5rem, 0.24fr) minmax(0, 1fr);
   gap: clamp(1rem, 3vw, 3rem);
   align-items: end;
 }
@@ -827,7 +1034,7 @@ main.site-main:has(.home-shell) {
   letter-spacing: 0.14em;
   line-height: 1.35;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.68);
+  color: var(--observatory-red);
 }
 
 .retrieval-constellation-intro h2 {
@@ -840,7 +1047,7 @@ main.site-main:has(.home-shell) {
   letter-spacing: 0;
   line-height: 0.74;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--observatory-red);
 }
 
 .retrieval-constellation-intro h2 span {
@@ -854,24 +1061,112 @@ main.site-main:has(.home-shell) {
   font-family: "neue-haas-grotesk-text", 'NeueMontreal', var(--font-dm-sans), sans-serif;
   font-size: clamp(0.95rem, 1.55vw, 1.25rem);
   line-height: 1.45;
-  color: rgba(245, 240, 232, 0.8);
+  color: var(--observatory-muted);
 }
 
 .retrieval-constellation-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
+  grid-template-columns: minmax(0, 1.18fr) minmax(19rem, 0.82fr);
+  gap: clamp(1.75rem, 4vw, 4.5rem);
   align-items: stretch;
+}
+
+.retrieval-constellation-map-wrap {
+  position: relative;
+  min-height: clamp(32rem, 60vw, 49rem);
+  display: grid;
+  isolation: isolate;
+  overflow: hidden;
+  overflow: clip;
+}
+
+.retrieval-orbit-layer {
+  position: absolute;
+  inset: -11% -7%;
+  z-index: 0;
+  pointer-events: none;
+  perspective: 900px;
+  transform-origin: center;
+  mix-blend-mode: multiply;
+}
+
+.retrieval-orbit-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform:
+    translate(-50%, -50%)
+    rotateZ(-14deg)
+    scaleY(0.54);
+  transform-style: preserve-3d;
+}
+
+.retrieval-orbit-band {
+  --orbit-radius: min(34vw, 32rem);
+  --orbit-font-size: clamp(0.9rem, 2vw, 1.8rem);
+  --orbit-bg: var(--observatory-orbit-primary-bg);
+  --orbit-fg: var(--observatory-orbit-primary-fg);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform: translateY(-0.75rem);
+  transform-style: preserve-3d;
+}
+
+.retrieval-orbit-rag {
+  --orbit-bg: var(--observatory-orbit-secondary-bg);
+  --orbit-fg: var(--observatory-orbit-secondary-fg);
+  transform: translateY(0.75rem);
+}
+
+.retrieval-orbit-letter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  min-width: 0.75em;
+  height: 1.08em;
+  padding: 0 0.02em;
+  color: var(--orbit-fg);
+  font-family: "neue-haas-grotesk-display", "NeueMontreal", var(--font-dm-sans), sans-serif;
+  font-size: var(--orbit-font-size);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: pre;
+  transform:
+    translate(-50%, -50%)
+    rotate(var(--angle))
+    translateY(calc(var(--orbit-radius) * -1))
+    rotateX(88deg);
+  transform-origin: 50% 50%;
+  backface-visibility: visible;
+}
+
+.retrieval-orbit-letter::before {
+  content: '';
+  position: absolute;
+  inset: -0.08em -0.2em;
+  z-index: -1;
+  background: var(--orbit-bg);
 }
 
 .retrieval-constellation-map {
   position: relative;
-  min-height: clamp(30rem, 62vw, 48rem);
+  z-index: 1;
+  min-height: inherit;
   overflow: hidden;
+  border: 1px solid var(--observatory-rule);
   background:
-    radial-gradient(circle at 50% 50%, rgba(245, 240, 232, 0.16), transparent 18rem),
-    radial-gradient(circle at 22% 20%, rgba(245, 240, 232, 0.08), transparent 12rem),
-    radial-gradient(circle at 78% 78%, rgba(13, 11, 9, 0.2), transparent 18rem);
+    linear-gradient(135deg, var(--observatory-map-accent), transparent 42%),
+    linear-gradient(315deg, var(--observatory-map-shadow), transparent 48%),
+    var(--observatory-map-surface);
 }
 
 .retrieval-constellation-map::before,
@@ -879,14 +1174,14 @@ main.site-main:has(.home-shell) {
   content: '';
   position: absolute;
   inset: 12%;
-  border: 1px solid rgba(245, 240, 232, 0.2);
+  border: 1px solid var(--observatory-rule);
   border-radius: 50%;
   pointer-events: none;
 }
 
 .retrieval-constellation-map::after {
   inset: 24%;
-  border-color: rgba(245, 240, 232, 0.14);
+  border-color: color-mix(in srgb, var(--observatory-ink) 18%, transparent);
 }
 
 .retrieval-constellation-lines {
@@ -898,14 +1193,14 @@ main.site-main:has(.home-shell) {
 }
 
 .retrieval-constellation-lines line {
-  stroke: rgba(245, 240, 232, 0.2);
+  stroke: color-mix(in srgb, var(--observatory-red) 42%, transparent);
   stroke-width: 0.35;
   vector-effect: non-scaling-stroke;
   transition: stroke 0.2s ease, stroke-width 0.2s ease;
 }
 
 .retrieval-constellation-lines line.is-active {
-  stroke: rgba(255, 255, 255, 0.92);
+  stroke: var(--observatory-red);
   stroke-width: 0.9;
 }
 
@@ -928,8 +1223,8 @@ main.site-main:has(.home-shell) {
   display: grid;
   place-content: center;
   gap: 0.8rem;
-  background: var(--cream);
-  color: var(--signature-blue);
+  background: var(--observatory-red);
+  color: var(--observatory-paper);
   transform: translate(-50%, -50%);
   text-align: center;
   transition: transform 0.2s ease, background-color 0.2s ease;
@@ -938,8 +1233,8 @@ main.site-main:has(.home-shell) {
 .retrieval-constellation-core:hover,
 .retrieval-constellation-core:focus-visible {
   transform: translate(-50%, -50%) scale(1.025);
-  background: #fff;
-  outline: 2px solid #fff;
+  background: var(--observatory-red-deep);
+  outline: 2px solid var(--observatory-red);
   outline-offset: 4px;
 }
 
@@ -967,8 +1262,9 @@ main.site-main:has(.home-shell) {
   padding: 0.65rem 0.75rem 0.7rem;
   display: grid;
   gap: 0.22rem;
-  background: rgba(245, 240, 232, 0.9);
-  color: var(--signature-blue);
+  border: 1px solid var(--observatory-rule);
+  background: var(--observatory-node-bg);
+  color: var(--observatory-node-fg);
   transform: translate(-50%, -50%);
   text-align: left;
   transition:
@@ -981,10 +1277,10 @@ main.site-main:has(.home-shell) {
 .retrieval-constellation-node:hover,
 .retrieval-constellation-node:focus-visible,
 .retrieval-constellation-node.is-active {
-  background: #fff;
-  color: var(--warm-black);
+  background: var(--observatory-paper);
+  color: var(--observatory-node-active-fg);
   transform: translate(-50%, -50%) scale(1.06);
-  box-shadow: 0 0 0 2px var(--warm-black), 0 0 0 4px #fff;
+  box-shadow: 0 0 0 2px var(--observatory-red), 0 0 0 4px var(--observatory-paper);
   outline: 0;
 }
 
@@ -1010,21 +1306,56 @@ main.site-main:has(.home-shell) {
 .retrieval-constellation-panel {
   display: grid;
   align-content: start;
-  gap: clamp(1.15rem, 2vw, 1.6rem);
+  gap: clamp(1.2rem, 2vw, 1.65rem);
   padding-top: 0.2rem;
   font-family: "neue-haas-grotesk-text", 'NeueMontreal', var(--font-dm-sans), sans-serif;
+}
+
+.retrieval-constellation-field-note {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--observatory-rule);
+}
+
+.retrieval-constellation-field-note span {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--observatory-red);
+}
+
+.retrieval-constellation-field-note p {
+  margin: 0;
+  max-width: 34rem;
+  font-family: "Faculty Glyphic", var(--font-garamond), serif;
+  font-size: clamp(1.1rem, 2.15vw, 1.72rem);
+  line-height: 1.25;
+  color: var(--observatory-ink);
+}
+
+.retrieval-constellation-field-note strong {
+  justify-self: end;
+  font-size: clamp(3.4rem, 9vw, 7rem);
+  font-weight: 400;
+  line-height: 0.82;
+  color: color-mix(in srgb, var(--observatory-red) 18%, transparent);
 }
 
 .retrieval-constellation-scenario {
   display: grid;
   gap: 0.7rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--observatory-rule);
 }
 
 .retrieval-constellation-scenario span {
   width: fit-content;
   padding: 0.28rem 0.38rem 0.24rem;
-  background: var(--cream);
-  color: var(--signature-blue);
+  background: var(--observatory-red);
+  color: var(--observatory-paper);
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.13em;
@@ -1043,7 +1374,7 @@ main.site-main:has(.home-shell) {
   font-family: 'PostmansSerif', var(--font-garamond), serif;
   font-size: clamp(1.65rem, 3vw, 2.6rem);
   line-height: 1.05;
-  color: #fff;
+  color: var(--observatory-red);
 }
 
 .retrieval-constellation-node-detail {
@@ -1057,11 +1388,11 @@ main.site-main:has(.home-shell) {
   grid-template-columns: minmax(6rem, 0.8fr) minmax(0, 1.2fr);
   gap: 1rem;
   padding: 0.72rem 0;
-  border-top: 1px solid rgba(245, 240, 232, 0.35);
+  border-top: 1px solid var(--observatory-rule);
 }
 
 .retrieval-constellation-node-detail div:last-child {
-  border-bottom: 1px solid rgba(245, 240, 232, 0.35);
+  border-bottom: 1px solid var(--observatory-rule);
 }
 
 .retrieval-constellation-node-detail dt,
@@ -1075,27 +1406,27 @@ main.site-main:has(.home-shell) {
 .retrieval-constellation-node-detail dt {
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: rgba(245, 240, 232, 0.58);
+  color: rgba(26, 22, 18, 0.45);
 }
 
 .retrieval-constellation-node-detail dd {
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #fff;
+  color: var(--observatory-ink);
 }
 
 .retrieval-constellation-reason {
-  color: rgba(245, 240, 232, 0.78);
+  color: var(--observatory-muted);
 }
 
 .retrieval-constellation-diagnosis {
   padding-top: 0.85rem;
-  border-top: 1px solid rgba(245, 240, 232, 0.35);
+  border-top: 1px solid var(--observatory-rule);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--observatory-red);
 }
 
 /* Brutalist Music Widget */
@@ -1812,6 +2143,20 @@ main.site-main:has(.home-shell) {
     font-size: clamp(3.05rem, 13.5vw, 5.35rem);
   }
 
+  .retrieval-constellation-map-wrap {
+    min-height: 35rem;
+  }
+
+  .retrieval-orbit-layer {
+    inset: -5% -20%;
+    opacity: 0.16 !important;
+  }
+
+  .retrieval-orbit-band {
+    --orbit-radius: min(48vw, 14rem);
+    --orbit-font-size: clamp(0.62rem, 3.6vw, 0.98rem);
+  }
+
   .retrieval-constellation-map {
     min-height: 33rem;
   }
@@ -1841,6 +2186,14 @@ main.site-main:has(.home-shell) {
 
   .retrieval-constellation-node span {
     font-size: 0.62rem;
+  }
+
+  .retrieval-constellation-field-note p {
+    font-size: clamp(1.08rem, 4.1vw, 1.35rem);
+  }
+
+  .retrieval-constellation-field-note strong {
+    justify-self: start;
   }
 
   .retrieval-constellation-node-detail div {
