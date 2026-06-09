@@ -1,14 +1,14 @@
 import { PageTransition } from '@/components/PageTransition';
 import HomeHero from '@/components/HomeHero';
-import HomeMonologue from '@/components/HomeMonologue';
-import SpinningRings3D from '@/components/SpinningRings3D';
+import HomeRetrievalConstellation from '@/components/HomeRetrievalConstellation';
+import HomeThemeToggle from '@/components/HomeThemeToggle';
 
 export default function HomePage() {
   return (
     <PageTransition className="home-shell">
+      <HomeThemeToggle />
       <HomeHero />
-      <SpinningRings3D />
-      <HomeMonologue />
+      <HomeRetrievalConstellation />
     </PageTransition>
   );
 }
