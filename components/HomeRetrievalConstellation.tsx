@@ -199,20 +199,6 @@ export default function HomeRetrievalConstellation() {
         </div>
 
         <aside className="retrieval-constellation-panel" aria-live="polite">
-          <motion.div
-            className="retrieval-constellation-field-note"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span>Field Note</span>
-            <p>{retrievalConstellation.fieldNote}</p>
-            <strong className="font-hindi" aria-hidden="true">
-              नमस्कार
-            </strong>
-          </motion.div>
-
           <div className="retrieval-constellation-scenario">
             <span>{scenario.status}</span>
             <p>{scenario.summary}</p>

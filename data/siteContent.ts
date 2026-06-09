@@ -22,7 +22,7 @@ export const retrievalConstellation = {
   description:
     'A small map of what a production RAG system sees before it decides what to trust.',
   fieldNote:
-    'I grew up in Delhi, India - surrounded by chaos but more interested in what happened when systems broke. Today I build production RAG systems for workflows that do not get a second chance to hallucinate in front of a real user. I care as much about how a system fails as I do about how it runs on a good day.',
+    'I grew up in New Delhi - surrounded by chaos but more interested in what happened when systems broke. Today I build production RAG systems for workflows that do not get a second chance to hallucinate in front of a real user. I care as much about how a system fails as I do about how it runs on a good day.',
   scenarios: [
     {
       id: 'good-answer',
