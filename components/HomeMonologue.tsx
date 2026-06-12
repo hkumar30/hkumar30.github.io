@@ -115,10 +115,8 @@ function MonologueTextLine({
 
 export default function HomeMonologue() {
   const sectionRef = useRef<HTMLElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
   const shotTimersRef = useRef<number[]>([]);
   const shotIdRef = useRef(0);
-  const [activeLine, setActiveLine] = useState(0);
   const [shots, setShots] = useState<MonologueShot[]>([]);
   const prefersReducedMotion = useReducedMotion();
   const monologueStyle: MonologueStyle = {
@@ -129,46 +127,6 @@ export default function HomeMonologue() {
   };
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
-
-    let frame = 0;
-
-    const updateActiveLine = () => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const sectionTop = window.scrollY + rect.top;
-      const scrollableDistance = Math.max(1, rect.height - window.innerHeight);
-      const rawProgress = (window.scrollY - sectionTop) / scrollableDistance;
-      const progress = Math.min(0.999, Math.max(0, rawProgress));
-      const nextActiveLine = Math.min(
-        MONOLOGUE_LINES.length - 1,
-        Math.floor(progress * MONOLOGUE_LINES.length),
-      );
-
-      setActiveLine((current) =>
-        current === nextActiveLine ? current : nextActiveLine,
-      );
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(updateActiveLine);
-    };
-
-    updateActiveLine();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, [prefersReducedMotion]);
-
-  useEffect(() => {
     return () => {
       shotTimersRef.current.forEach((timer) => window.clearTimeout(timer));
       shotTimersRef.current = [];
@@ -176,9 +134,7 @@ export default function HomeMonologue() {
   }, []);
 
   const syncCursorToPointer = (event: PointerEvent<HTMLElement>) => {
-    const rect =
-      stickyRef.current?.getBoundingClientRect() ??
-      event.currentTarget.getBoundingClientRect();
+    const rect = event.currentTarget.getBoundingClientRect();
     const x = Math.min(
       100,
       Math.max(0, ((event.clientX - rect.left) / Math.max(1, rect.width)) * 100),
@@ -257,62 +213,55 @@ export default function HomeMonologue() {
     >
       <p className="sr-only">{MONOLOGUE_TEXT}</p>
 
-      <div ref={stickyRef} className="home-monologue-sticky">
-        <div className="home-monologue-graphic" aria-hidden="true">
-          <svg
-            className="home-monologue-blueprint"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            focusable="false"
-          >
-            <path d="M8 22 H31 V42 H55 V33 H83" />
-            <path d="M12 73 H37 V61 H63 V78 H92" />
-            <path d="M24 12 V82" />
-            <path d="M72 15 V88" />
-            <rect x="6" y="16" width="18" height="12" />
-            <rect x="48" y="27" width="24" height="12" />
-            <rect x="58" y="70" width="21" height="13" />
-            <circle cx="31" cy="42" r="2.2" />
-            <circle cx="55" cy="33" r="2.2" />
-            <circle cx="37" cy="61" r="2.2" />
-            <circle cx="72" cy="78" r="2.2" />
-          </svg>
-          <span className="home-monologue-hindi font-hindi">नमस्कार</span>
-        </div>
-        <div className="home-monologue-crosshair" aria-hidden="true">
-          <span className="home-monologue-reticle" />
-          {shots.map((shot) => (
-            <span
-              key={shot.id}
-              className="home-monologue-shot"
-              style={
-                {
-                  '--shot-x': shot.x,
-                  '--shot-y': shot.y,
-                  '--shot-angle': shot.angle,
-                  '--shot-distance': shot.distance,
-                } as MonologueShotStyle
-              }
-            />
-          ))}
-        </div>
-
-        <div
-          className={`home-monologue-copy ${
-            prefersReducedMotion ? 'is-reduced' : ''
-          }`}
-          aria-hidden="true"
+      <div className="home-monologue-graphic" aria-hidden="true">
+        <svg
+          className="home-monologue-blueprint"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          focusable="false"
         >
-          {MONOLOGUE_LINES.map((line, index) => (
-            <MonologueTextLine
-              key={index}
-              index={index}
-              line={line}
-              activeLine={activeLine}
-              reducedMotion={Boolean(prefersReducedMotion)}
-            />
-          ))}
-        </div>
+          <path d="M8 22 H31 V42 H55 V33 H83" />
+          <path d="M12 73 H37 V61 H63 V78 H92" />
+          <path d="M24 12 V82" />
+          <path d="M72 15 V88" />
+          <rect x="6" y="16" width="18" height="12" />
+          <rect x="48" y="27" width="24" height="12" />
+          <rect x="58" y="70" width="21" height="13" />
+          <circle cx="31" cy="42" r="2.2" />
+          <circle cx="55" cy="33" r="2.2" />
+          <circle cx="37" cy="61" r="2.2" />
+          <circle cx="72" cy="78" r="2.2" />
+        </svg>
+        <span className="home-monologue-hindi font-hindi">नमस्कार</span>
+      </div>
+      <div className="home-monologue-crosshair" aria-hidden="true">
+        <span className="home-monologue-reticle" />
+        {shots.map((shot) => (
+          <span
+            key={shot.id}
+            className="home-monologue-shot"
+            style={
+              {
+                '--shot-x': shot.x,
+                '--shot-y': shot.y,
+                '--shot-angle': shot.angle,
+                '--shot-distance': shot.distance,
+              } as MonologueShotStyle
+            }
+          />
+        ))}
+      </div>
+
+      <div className="home-monologue-copy is-reduced" aria-hidden="true">
+        {MONOLOGUE_LINES.map((line, index) => (
+          <MonologueTextLine
+            key={index}
+            index={index}
+            line={line}
+            activeLine={index}
+            reducedMotion
+          />
+        ))}
       </div>
     </section>
   );
