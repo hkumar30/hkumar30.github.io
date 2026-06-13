@@ -632,11 +632,11 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
 }
 
 .home-hero-left {
-  container-type: inline-size;
-  padding: 6.35rem clamp(1.25rem, 5vw, 4rem) 1rem;
+  container-type: size;
+  padding: clamp(2rem, 9svh, 6.35rem) clamp(1.25rem, 5vw, 4rem) clamp(0.75rem, 2svh, 1rem);
   display: grid;
   align-content: space-between;
-  gap: 1.2rem;
+  gap: clamp(0.6rem, 2svh, 1.2rem);
   background: var(--home-paper);
   min-width: 0;
   overflow: hidden;
@@ -656,7 +656,7 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 0.86;
-  font-size: clamp(3rem, 28cqi, 20rem);
+  font-size: clamp(3rem, min(28cqi, 17cqh), 20rem);
   display: grid;
   color: var(--home-accent);
   text-transform: uppercase;
@@ -686,7 +686,7 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   grid-template-columns: 2.4rem minmax(6rem, 1fr) minmax(5rem, auto) 1.1rem;
   align-items: baseline;
   column-gap: clamp(0.7rem, 1.5vw, 1.05rem);
-  padding: clamp(0.48rem, 1vw, 0.62rem) 0;
+  padding: clamp(0.36rem, 1.25cqh, 0.62rem) 0;
   border-top: 1px solid color-mix(in srgb, var(--home-accent) 32%, transparent);
   color: color-mix(in srgb, var(--home-ink) 86%, transparent);
   text-decoration: none;
@@ -711,7 +711,7 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
 .home-hero-index-number,
 .home-hero-index-label,
 .home-hero-index-arrow {
-  font-size: clamp(0.68rem, 0.9vw, 0.82rem);
+  font-size: clamp(0.65rem, min(0.9vw, 1.6cqh), 0.82rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.13em;
@@ -726,7 +726,7 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
 
 .home-hero-index-hi {
   justify-self: end;
-  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  font-size: clamp(0.72rem, min(1vw, 1.75cqh), 0.9rem);
   font-weight: 500;
   line-height: 1.1;
   color: var(--home-accent);
@@ -751,7 +751,7 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
 
 .home-hero-meta {
   margin: 0;
-  padding-top: 1rem;
+  padding-top: clamp(0.35rem, 1.8cqh, 1rem);
   border-top: 1px solid var(--home-rule);
   display: flex;
   align-items: center;
@@ -759,7 +759,7 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   gap: 0.6rem;
   flex-wrap: wrap;
   font-family: "neue-haas-grotesk-text", 'NeueMontreal', sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.72rem, min(1vw, 2.15cqh), 1rem);
   letter-spacing: 0.13em;
   font-weight: 550;
   text-transform: uppercase;
@@ -1197,7 +1197,7 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   margin-left: 0;
   justify-content: flex-start;
   text-align: left;
-  font-size: clamp(2.35rem, 8vw, 6rem);
+  font-size: clamp(1.76rem, 6vw, 4.5rem);
   opacity: 1 !important;
   transform: none !important;
   filter: none !important;
