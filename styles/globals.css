@@ -2721,8 +2721,13 @@ html[data-home-theme='dark'] .home-footer-icon-stroke {
   padding: clamp(6rem, 12vw, 10rem) clamp(1.25rem, 5vw, 4rem);
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, #f5f0e8 0%, var(--cream) 100%);
-  border-bottom: 1px solid var(--ink);
+  background: var(--home-paper);
+  border-bottom: 1px solid var(--home-ink);
+}
+
+html[data-home-theme='dark'] .lab-header {
+  background: var(--home-paper);
+  border-bottom-color: var(--home-ink);
 }
 
 .lab-header-content {
@@ -2861,6 +2866,35 @@ html[data-home-theme='dark'] .home-footer-icon-stroke {
   color: var(--signature-blue);
 }
 
+/* Dark mode support for Lab page */
+html[data-home-theme='dark'] .lab-kicker {
+  color: var(--home-accent);
+}
+
+html[data-home-theme='dark'] .lab-title,
+html[data-home-theme='dark'] .lab-intro em,
+html[data-home-theme='dark'] .lab-meta-value,
+html[data-home-theme='dark'] .lab-notes-title,
+html[data-home-theme='dark'] .lab-note-box h3 {
+  color: var(--home-ink);
+}
+
+html[data-home-theme='dark'] .lab-intro,
+html[data-home-theme='dark'] .lab-meta-label,
+html[data-home-theme='dark'] .lab-loading,
+html[data-home-theme='dark'] .lab-note-box p {
+  color: var(--home-muted);
+}
+
+html[data-home-theme='dark'] .lab-meta-box,
+html[data-home-theme='dark'] .lab-note-box {
+  border-color: var(--home-ink);
+}
+
+html[data-home-theme='dark'] .lab-note-box:hover {
+  border-color: var(--home-accent);
+}
+
 /* ========================================
    TEACHING SECTION STYLES
    ======================================== */
@@ -2869,7 +2903,7 @@ html[data-home-theme='dark'] .home-footer-icon-stroke {
   position: relative;
   min-height: 100svh;
   padding: clamp(5rem, 12vw, 8rem) clamp(1.5rem, 6vw, 4rem);
-  background: #faf6f0;
+  background: var(--home-paper);
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
@@ -3178,7 +3212,7 @@ html[data-home-theme='dark'] .home-footer-icon-stroke {
 .home-footer-closing {
   position: relative;
   padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
-  background: #f5f0e8;
+  background: var(--home-paper);
   border-top: 1px solid var(--home-ink);
   display: grid;
   gap: 3rem;
@@ -3317,22 +3351,3 @@ html[data-home-theme='dark'] .home-footer-icon-stroke {
    SECTION BACKGROUND TONAL SHIFTS
    ======================================== */
 
-/* Hero — warm coral-cream (existing) */
-.home-hero-split {
-  background: #fcf0ec;
-}
-
-/* Monologue — neutral cream, slightly cooler */
-.home-monologue {
-  background: #f8f4ed;
-}
-
-/* Teaching — warm paper with subtle texture feel */
-.home-teaching {
-  background: #faf6f0;
-}
-
-/* Footer — grounding, slightly deeper */
-.home-footer-closing {
-  background: #f5f0e8;
-}
