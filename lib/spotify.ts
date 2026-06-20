@@ -12,13 +12,14 @@ export interface SpotifyTrack {
   playedAt?: string;
 }
 
-async function getToken(): Promise<string> {
+async function getToken(): Promise<string | null> {
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
   const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
-  
+
   if (!clientId || !clientSecret || !refreshToken) {
-    throw new Error('Spotify credentials not configured');
+    console.warn('Spotify credentials not configured - skipping track fetch');
+    return null;
   }
   
   const response = await fetch(SPOTIFY_TOKEN_URL, {
@@ -34,7 +35,10 @@ async function getToken(): Promise<string> {
     next: { revalidate: 3300 }, // Token lasts 3600s, refresh at 3300s
   });
   
-  if (!response.ok) throw new Error('Token fetch failed');
+  if (!response.ok) {
+    console.error('Token fetch failed:', await response.text());
+    return null;
+  }
   const data = await response.json();
   return data.access_token;
 }
@@ -42,7 +46,12 @@ async function getToken(): Promise<string> {
 export async function getCurrentTrack(): Promise<SpotifyTrack | null> {
   try {
     const token = await getToken();
-    
+
+    if (!token) {
+      // Credentials not configured - return null silently
+      return null;
+    }
+
     // Try currently playing
     const nowPlaying = await fetch(SPOTIFY_NOW_PLAYING_URL, {
       headers: { 'Authorization': `Bearer ${token}` },

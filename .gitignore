@@ -4,6 +4,9 @@ node_modules
 out
 .env
 .env.local
+.env.spotify
+*.mjs
+!next.config.js
 .cursor
 AGENTS.md
 dist

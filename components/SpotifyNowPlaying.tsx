@@ -3,27 +3,31 @@ import Image from 'next/image';
 
 export default async function SpotifyNowPlaying() {
   const track = await getCurrentTrack();
-  
+
   if (!track) {
     return (
       <div className="spotify-box">
         <div className="spotify-artwork" style={{ background: '#f0f0f0' }} />
         <div className="spotify-info">
-          <p className="spotify-muted">Silence is golden (or Spotify API is napping)</p>
+          <p className="spotify-muted">Silence is golden</p>
+          <p className="spotify-muted" style={{ fontSize: '0.75rem' }}>
+            (Last checked: {new Date().toLocaleTimeString()})
+          </p>
         </div>
       </div>
     );
   }
-  
+
   return (
     <div className="spotify-box">
       {track.albumArt && (
         <div className="spotify-artwork">
-          <Image 
-            src={track.albumArt} 
+          <Image
+            src={track.albumArt}
             alt={`${track.album} cover`}
             width={56}
             height={56}
+            unoptimized
           />
           {track.isPlaying && <span className="spotify-playing-indicator" />}
         </div>
@@ -34,6 +38,9 @@ export default async function SpotifyNowPlaying() {
         </p>
         <p className="spotify-track" title={track.name}>{track.name}</p>
         <p className="spotify-artist" title={track.artist}>{track.artist}</p>
+        <p className="spotify-muted" style={{ fontSize: '0.65rem', marginTop: '0.25rem' }}>
+          Updated: {new Date().toLocaleTimeString()}
+        </p>
       </div>
     </div>
   );
