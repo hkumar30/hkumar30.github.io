@@ -8,6 +8,43 @@ import { profile } from '@/data/profile';
 import PhoenixDateTime from '@/components/PhoenixDateTime';
 import { heroContent, navItems } from '@/data/siteContent';
 
+// Letter animation component
+function AnimatedName({ text, prefersReducedMotion, delay = 0 }: { 
+  text: string; 
+  prefersReducedMotion: boolean | null;
+  delay?: number;
+}) {
+  const letters = text.toUpperCase().split('');
+  
+  return (
+    <motion.span className="home-hero-name-letters">
+      {letters.map((letter, index) => (
+        <motion.span
+          key={index}
+          className="home-hero-name-letter"
+          initial={prefersReducedMotion ? false : { 
+            opacity: 0, 
+            y: 50,
+            scale: 0.5 
+          }}
+          animate={{ 
+            opacity: 1, 
+            y: 0,
+            scale: 1 
+          }}
+          transition={{
+            duration: 0.5,
+            ease: [0.22, 1, 0.36, 1],
+            delay: delay + (index * 0.04),
+          }}
+        >
+          {letter === ' ' ? '\u00A0' : letter}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
+
 export default function HomeHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -28,10 +65,22 @@ export default function HomeHero() {
       <div className="home-hero-left">
         <div className="home-hero-heading-wrap">
           <h1 className="home-hero-name" aria-label={profile.name}>
-            <span>{firstName.toUpperCase()}</span>
-            <span>{lastName.toUpperCase()}</span>
+            <AnimatedName 
+              text={firstName} 
+              prefersReducedMotion={prefersReducedMotion} 
+              delay={0.1}
+            />
           </h1>
-          <p className="home-hero-intro">{heroContent.intro}</p>
+
+          <h1 className="home-hero-name" aria-hidden="true">
+            <AnimatedName 
+              text={lastName} 
+              prefersReducedMotion={prefersReducedMotion}
+              delay={0.3}
+            />
+          </h1>
+
+          <p className="home-hero-intro is-sr-only">{heroContent.intro}</p>
         </div>
 
         <nav className="home-hero-index-nav" aria-label="Primary navigation">
@@ -55,6 +104,12 @@ export default function HomeHero() {
             </Link>
           ))}
         </nav>
+
+        <div className="home-hero-meta-boxed">
+          <p className="home-hero-tagline">
+            Systems that ship reliably, fail gracefully
+          </p>
+        </div>
 
         <p className="home-hero-meta">
           <span>{heroContent.location.toUpperCase()}</span>

@@ -3,6 +3,7 @@ import {
   DM_Sans,
   EB_Garamond,
   Noto_Sans_Devanagari,
+  Bebas_Neue,
 } from 'next/font/google';
 import { seo } from '@/data/profile';
 import GrainShader from '@/components/GrainShader';
@@ -27,6 +28,13 @@ const hindiSans = Noto_Sans_Devanagari({
   subsets: ['devanagari'],
   display: 'swap',
   variable: '--font-hindi',
+});
+
+const bebasNeue = Bebas_Neue({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-bebas-neue',
 });
 
 export const metadata: Metadata = {
@@ -60,7 +68,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/sox3fll.css" />
       </head>
-      <body className={`${garamond.variable} ${dmSans.variable} ${hindiSans.variable}`}>
+      <body className={`${garamond.variable} ${dmSans.variable} ${hindiSans.variable} ${bebasNeue.variable}`}>
         <noscript>{seo.noscript}</noscript>
         <CustomCursor />
         <Nav />

@@ -7,7 +7,7 @@ export type NavItem = {
 export const navItems: NavItem[] = [
   { href: '/projects', label: 'Projects', labelHi: 'परियोजनाएं' },
   { href: '/work', label: 'Work', labelHi: 'कार्य' },
-  { href: '/writing', label: 'Writing', labelHi: 'लेखन' },
+  { href: '/lab', label: 'Lab', labelHi: 'प्रयोगशाला' },
   { href: '/contact', label: 'Contact', labelHi: 'संपर्क' },
 ];
 
