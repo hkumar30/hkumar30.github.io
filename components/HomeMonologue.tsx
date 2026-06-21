@@ -13,6 +13,7 @@ export default function HomeMonologue() {
       className="home-monologue"
       aria-label="About"
     >
+      <div className="home-monologue-frame">
       <div className="home-monologue-copy">
         {/* Opening with asterisk */}
         <p className="home-monologue-block">
@@ -60,6 +61,7 @@ export default function HomeMonologue() {
           Currently accepting <span className="home-monologue-strong">interesting problems</span>{' '}
           and strong coffee.
         </p>
+      </div>
       </div>
     </section>
   );
