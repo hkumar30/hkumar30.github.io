@@ -3070,27 +3070,6 @@ html[data-home-theme='dark'] .lab-note-box:hover {
   align-items: center;
 }
 
-/* Cartesian grid background - theme aware, darker for more definition */
-.home-teaching::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image:
-    linear-gradient(
-      90deg,
-      color-mix(in srgb, var(--home-ink) 18%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      0deg,
-      color-mix(in srgb, var(--home-ink) 18%, transparent) 1px,
-      transparent 1px
-    );
-  background-size: clamp(4rem, 8vw, 8rem) clamp(4rem, 8vw, 8rem);
-  pointer-events: none;
-}
-
 @media (min-width: 980px) {
   .home-teaching {
     grid-template-columns: auto 1fr;
@@ -3361,16 +3340,22 @@ html[data-home-theme='dark'] .lab-note-box:hover {
   margin-top: 4rem;
   padding: 2.5rem 0;
   border-top: 1px solid color-mix(in srgb, var(--home-ink) 15%, transparent);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
   max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .teaching-closing-text {
   margin: 0;
   font-family: var(--font-garamond), 'EB Garamond', Georgia, serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-style: italic;
   color: var(--home-muted);
 }
@@ -3382,97 +3367,378 @@ html[data-home-theme='dark'] .lab-note-box:hover {
 }
 
 .teaching-footnote {
-  margin: 1rem 0 0;
+  margin: 0;
   font-family: var(--font-garamond), 'EB Garamond', Georgia, serif;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-style: italic;
   color: var(--home-muted);
 }
 
-/* Spotify Box */
-.spotify-box {
+/* ========================================
+   SPOTIFY CARD - Vinyl Player (Brutalist)
+   ======================================== */
+
+/* Crosshair frame: cross-sectional grid lines around a compact box */
+.spotify-frame {
+  position: relative;
+  width: min(100%, 540px);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3.25rem);
+}
+
+/* Registration grid behind the box */
+.spotify-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--home-ink) 18%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--home-ink) 18%, transparent) 1px, transparent 1px);
+  background-position: center;
+  background-size: 50% 50%;
+  pointer-events: none;
+}
+
+/* Hairline outer rule of the compact box */
+.spotify-frame::after {
+  content: '';
+  position: absolute;
+  inset: clamp(1rem, 2.5vw, 1.6rem);
+  border: 1px solid color-mix(in srgb, var(--home-ink) 28%, transparent);
+  pointer-events: none;
+}
+
+.spotify-card {
+  --sp-green: #1ed760;
+  --sp-green-deep: #1db954;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  width: 100%;
+  padding: 1.4rem 1.5rem 1.15rem;
+  text-align: left;
+  border-radius: 2px;
+  background: var(--home-paper);
+  border: 1px solid var(--home-ink);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+
+.spotify-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--home-ink);
+}
+
+/* Main row: disc + metadata */
+.spotify-card-main {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--home-ink);
-  border-style: dotted;
-  background: transparent;
-  max-width: 400px;
+  gap: 1.35rem;
+  min-width: 0;
 }
 
-.spotify-artwork {
+/* Disc wrapper holds vinyl + cover */
+.spotify-card-disc {
   position: relative;
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
-  border: 1px solid var(--home-ink);
+  width: 96px;
+  height: 96px;
 }
 
-.spotify-artwork img {
+/* Vinyl record peeking from behind the cover */
+.spotify-card-vinyl {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) translateX(6px);
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      #0c0c0c 0,
+      #0c0c0c 1px,
+      #1c1c1c 2px,
+      #141414 3px
+    ),
+    radial-gradient(circle at center, #232323 0%, #050505 75%);
+  box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.spotify-card-vinyl-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #0a0a0a 0 4px, transparent 5px),
+    linear-gradient(135deg, var(--sp-green) 0%, var(--sp-green-deep) 100%);
+}
+
+/* Spin animation only while actively playing */
+.spotify-card[data-playing='true'] .spotify-card-vinyl {
+  animation: spotify-spin 4s linear infinite;
+}
+
+/* Vinyl becomes more distinctive on hover */
+.spotify-card:hover .spotify-card-vinyl {
+  transform: translate(-50%, -50%) translateX(20px);
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      #000 0,
+      #000 1px,
+      #2e2e2e 2px,
+      #101010 3px
+    ),
+    radial-gradient(circle at center, #3a3a3a 0%, #000 78%);
+  box-shadow:
+    0 8px 20px -6px rgba(0, 0, 0, 0.85),
+    0 0 0 1px color-mix(in srgb, var(--sp-green) 50%, transparent);
+}
+
+/* Blue/dark mode: white vinyl with distinct grooves on hover */
+html[data-home-theme='dark'] .spotify-card:hover .spotify-card-vinyl {
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      #ffffff 0,
+      #ffffff 1px,
+      #b8b8b8 2px,
+      #ececec 3px
+    ),
+    radial-gradient(circle at center, #ffffff 0%, #cdcdcd 80%);
+  box-shadow:
+    0 8px 22px -6px rgba(0, 0, 0, 0.6),
+    0 0 0 1px color-mix(in srgb, var(--sp-green) 60%, transparent);
+}
+
+@keyframes spotify-spin {
+  to {
+    transform: translate(-50%, -50%) translateX(16px) rotate(360deg);
+  }
+}
+
+/* Album cover (artwork kept untouched, rounded per Spotify guidelines) */
+.spotify-card-cover {
+  position: absolute;
+  inset: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 3px;
+  overflow: hidden;
+  z-index: 2;
+  background: linear-gradient(135deg, #282828 0%, #121212 100%);
+  border: 1px solid color-mix(in srgb, var(--home-ink) 30%, transparent);
+}
+
+.spotify-card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.spotify-playing-indicator {
-  position: absolute;
-  bottom: 3px;
-  right: 3px;
-  width: 8px;
-  height: 8px;
-  background: #1DB954;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
+.spotify-card-cover-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: color-mix(in srgb, var(--sp-green) 70%, #fff 30%);
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+.spotify-card-cover-empty svg {
+  width: 34px;
+  height: 34px;
 }
 
-.spotify-info {
+/* Metadata body */
+.spotify-card-body {
   min-width: 0;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
 }
 
-.spotify-label {
-  margin: 0 0 0.2rem;
+.spotify-card-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spotify-card-status-text {
   font-family: "neue-haas-grotesk-text", 'NeueMontreal', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--home-muted);
 }
 
-.spotify-track {
-  margin: 0 0 0.1rem;
+/* Equalizer bars (visible only while playing) */
+.spotify-card-eq {
+  display: none;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.spotify-card[data-playing='true'] .spotify-card-eq {
+  display: inline-flex;
+}
+
+.spotify-card-eq span {
+  width: 3px;
+  height: 100%;
+  border-radius: 1px;
+  background: var(--sp-green-deep);
+  transform-origin: bottom;
+  animation: spotify-eq 0.9s ease-in-out infinite;
+}
+
+.spotify-card-eq span:nth-child(2) { animation-delay: 0.15s; }
+.spotify-card-eq span:nth-child(3) { animation-delay: 0.35s; }
+.spotify-card-eq span:nth-child(4) { animation-delay: 0.5s; }
+
+@keyframes spotify-eq {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+.spotify-card-title {
+  margin: 0;
   font-family: "neue-haas-grotesk-text", 'NeueMontreal', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 1.22rem;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--home-ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.spotify-artist {
+.spotify-card-artist {
   margin: 0;
   font-family: "neue-haas-grotesk-text", 'NeueMontreal', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.92rem;
+  font-weight: 400;
   color: var(--home-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.spotify-muted {
-  margin: 0;
-  font-family: "neue-haas-grotesk-text", 'NeueMontreal', sans-serif;
-  font-size: 0.85rem;
-  color: var(--home-muted);
+.spotify-card-artist--muted {
   font-style: italic;
+  opacity: 0.85;
+}
+
+/* CTA / Spotify attribution pill */
+.spotify-card-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  align-self: flex-start;
+  padding: 0.55rem 1rem 0.55rem 0.7rem;
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--home-ink);
+  background: transparent;
+  border: 1px solid var(--home-ink);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.spotify-card-cta:hover,
+.spotify-card-cta:focus-visible {
+  background: var(--sp-green);
+  border-color: var(--sp-green);
+  color: #000;
+  outline: 0;
+}
+
+.spotify-card-logo {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--sp-green-deep);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.spotify-card-cta:hover .spotify-card-logo,
+.spotify-card-cta:focus-visible .spotify-card-logo {
+  color: #000;
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.spotify-card-cta-text {
+  font-family: "neue-haas-grotesk-text", 'NeueMontreal', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.spotify-card-cta-arrow {
+  font-size: 0.85rem;
+  transform: translateX(-2px);
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.spotify-card-cta:hover .spotify-card-cta-arrow,
+.spotify-card-cta:focus-visible .spotify-card-cta-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 640px) {
+  .spotify-card {
+    width: 100%;
+    padding: 1.2rem 1.25rem 1rem;
+  }
+
+  .spotify-card-disc,
+  .spotify-card-vinyl,
+  .spotify-card-cover {
+    width: 78px;
+    height: 78px;
+  }
+
+  .spotify-card-vinyl {
+    height: 74px;
+  }
+
+  .spotify-card-title {
+    font-size: 1.08rem;
+  }
+
+  .spotify-card-artist {
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotify-card[data-playing='true'] .spotify-card-vinyl {
+    animation: none;
+  }
+
+  .spotify-card-eq span {
+    animation: none;
+    transform: scaleY(0.7);
+  }
 }
 
 /* ========================================
