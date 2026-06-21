@@ -41,15 +41,29 @@ export default function HomeTeaching({ spotifyTrack }: HomeTeachingProps) {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              {/* Logo at top */}
+              {/* Logo at top — swaps to a brand-approved variant in blue/dark mode */}
               <div className="teaching-card-logo">
                 <Image
                   src={item.logo}
                   alt={item.logoAlt}
                   width={120}
                   height={120}
-                  className="teaching-logo-image"
+                  className={
+                    item.logoDark
+                      ? 'teaching-logo-image teaching-logo-image--light'
+                      : 'teaching-logo-image'
+                  }
                 />
+                {item.logoDark && (
+                  <Image
+                    src={item.logoDark}
+                    alt={item.logoAlt}
+                    width={120}
+                    height={120}
+                    className="teaching-logo-image teaching-logo-image--dark"
+                    aria-hidden="true"
+                  />
+                )}
               </div>
 
               {/* Text content in middle */}
