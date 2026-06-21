@@ -18,7 +18,15 @@ async function getToken(): Promise<string | null> {
   const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
 
   if (!clientId || !clientSecret || !refreshToken) {
-    console.warn('Spotify credentials not configured - skipping track fetch');
+    const missing = [];
+    if (!clientId) missing.push('SPOTIFY_CLIENT_ID');
+    if (!clientSecret) missing.push('SPOTIFY_CLIENT_SECRET');
+    if (!refreshToken) missing.push('SPOTIFY_REFRESH_TOKEN');
+    
+    console.warn(
+      `Spotify credentials not configured (${missing.join(', ')}) - skipping track fetch. ` +
+      `Set these in .env.local for local dev or GitHub Secrets for automated builds.`
+    );
     return null;
   }
   

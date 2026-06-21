@@ -6,6 +6,7 @@ import { useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { profile } from '@/data/profile';
 import PhoenixDateTime from '@/components/PhoenixDateTime';
+import CompactNav from '@/components/CompactNav';
 import { heroContent, navItems } from '@/data/siteContent';
 
 // Letter animation component
@@ -104,6 +105,8 @@ export default function HomeHero() {
             </Link>
           ))}
         </nav>
+
+        <CompactNav />
 
         <div className="home-hero-meta-boxed">
           <p className="home-hero-tagline">
