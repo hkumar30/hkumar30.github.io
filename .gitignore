@@ -7,9 +7,11 @@ out
 .env.spotify
 *.mjs
 !next.config.js
+!scripts/*.mjs
 .cursor
 AGENTS.md
 dist
 *.log
 .vercel
+screenshots/
 /public/images/hero-portrait.png
