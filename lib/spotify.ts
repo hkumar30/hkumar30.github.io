@@ -13,11 +13,6 @@ export interface SpotifyTrack {
 }
 
 async function getToken(): Promise<string | null> {
-  // Client-side: Don't attempt API calls (no credentials in browser)
-  if (typeof window !== 'undefined') {
-    return null;
-  }
-
   const clientId = process.env.SPOTIFY_CLIENT_ID;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
   const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
