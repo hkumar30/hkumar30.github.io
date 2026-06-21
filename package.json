@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@glyphs/brands": "^0.1.9",
+    "@glyphs/core": "^0.8.12",
+    "@glyphs/flags": "^0.5.5",
     "framer-motion": "^11.15.0",
     "next": "^14.2.32",
     "react": "^18.3.1",
