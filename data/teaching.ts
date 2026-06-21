@@ -4,6 +4,8 @@ export type TeachingItem = {
   period: string;
   description: string;
   logo: string;
+  /** Optional theme-specific variant shown in blue/dark mode (e.g. white knockout). */
+  logoDark?: string;
   logoAlt: string;
   screenshot: string;
   screenshotAlt: string;
@@ -19,8 +21,8 @@ export const teachingItems: TeachingItem[] = [
     period: '2025 — 2026',
     description:
       'Led a 10-15 student remote section for Stanford Code in Place, walking Python from problem statement to readable code. The work was less about perfect syntax and more about making errors feel traceable, fixable, and ordinary.',
-    logo: '/images/stanford-logo.jpg',
-    logoAlt: 'Stanford University logo',
+    logo: '/images/stanford-logo.svg',
+    logoAlt: 'Stanford University wordmark',
     screenshot: '/images/teaching-code-in-place.png',
     screenshotAlt: 'Harsh leading a Code in Place section on Zoom',
   },
@@ -30,7 +32,8 @@ export const teachingItems: TeachingItem[] = [
     period: '2021 — 2022',
     description:
       'As Technical Development Director for SoDA, I helped lead the technical programming and ran weekly workshops for the ASU community. Competitive programming, web dev, interview prep, tooling, beginner CS — the room mattered because learning felt easier when people showed up together.',
-    logo: '/images/ASU-logo.png',
+    logo: '/images/asu-logo.svg',
+    logoDark: '/images/asu-logo-dark.svg',
     logoAlt: 'Arizona State University logo',
     screenshot: '/images/teaching-soda-workshops.png',
     screenshotAlt: 'Harsh speaking during a SoDA workshop at ASU',
