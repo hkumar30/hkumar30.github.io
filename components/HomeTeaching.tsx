@@ -2,11 +2,15 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Suspense } from 'react';
-import SpotifyNowPlaying from './SpotifyNowPlaying';
+import { SpotifyTrack } from '@/lib/spotify';
+import SpotifyWidget from './SpotifyWidget';
 import { teachingIntro, teachingItems } from '@/data/teaching';
 
-export default function HomeTeaching() {
+interface HomeTeachingProps {
+  spotifyTrack: SpotifyTrack | null;
+}
+
+export default function HomeTeaching({ spotifyTrack }: HomeTeachingProps) {
   return (
     <section
       className="home-teaching"
@@ -79,15 +83,7 @@ export default function HomeTeaching() {
             probably listening to:
           </p>
 
-          <Suspense
-            fallback={
-              <div className="spotify-box">
-                <p className="spotify-muted">Loading playlist...</p>
-              </div>
-            }
-          >
-            <SpotifyNowPlaying />
-          </Suspense>
+          <SpotifyWidget track={spotifyTrack} />
 
           <p className="teaching-footnote">
             <span className="teaching-asterisk">**</span> Or silence.

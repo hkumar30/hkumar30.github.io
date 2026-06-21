@@ -4,14 +4,17 @@ import HomeHero from '@/components/HomeHero';
 import HomeMonologue from '@/components/HomeMonologue';
 import HomeTeaching from '@/components/HomeTeaching';
 import HomeThemeToggle from '@/components/HomeThemeToggle';
+import { getCurrentTrack } from '@/lib/spotify';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const spotifyTrack = await getCurrentTrack();
+
   return (
     <PageTransition className="home-shell">
       <HomeThemeToggle />
       <HomeHero />
       <HomeMonologue />
-      <HomeTeaching />
+      <HomeTeaching spotifyTrack={spotifyTrack} />
       <HomeFooter />
     </PageTransition>
   );

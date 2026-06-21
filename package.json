@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "screenshot": "node scripts/screenshot.mjs",
+    "screenshot:hero": "node scripts/screenshot.mjs --route=/ --viewports=desktop,mobile",
+    "screenshot:all": "node scripts/screenshot.mjs --routes=/,/projects,/work,/lab,/contact --viewports=desktop,mobile",
+    "postinstall": "npx playwright install chromium"
   },
   "dependencies": {
     "@glyphs/brands": "^0.1.9",
@@ -22,8 +26,10 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^16.4.7",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.32",
+    "playwright": "^1.49.0",
     "postcss": "^8.5.4",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3"

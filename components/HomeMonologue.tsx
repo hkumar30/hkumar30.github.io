@@ -17,7 +17,7 @@ export default function HomeMonologue() {
         {/* Opening with asterisk */}
         <p className="home-monologue-block">
           According to <span className="home-monologue-strong">official records</span>
-          <span className="home-monologue-asterisk">*</span>, Harsh Kumar is a
+          <span className="home-monologue-asterisk">*</span>, I am a
           software engineer based in Redmond, WA.
         </p>
 
@@ -52,7 +52,7 @@ export default function HomeMonologue() {
           <span className="home-monologue-asterisk">*</span>.
         </p>
         <p className="home-monologue-footnote">
-          * Yes, this is a subtle flex. No, I&apos;m not sorry.
+          * Yes, this is true.
         </p>
 
         {/* Closing */}
