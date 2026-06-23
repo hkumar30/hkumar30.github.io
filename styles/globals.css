@@ -1562,7 +1562,7 @@ html[data-home-theme='dark'] .retrieval-scenario-tab[data-status='regression'] {
 }
 
 /* ========================================
-   RETRIEVAL LEDGER — ranked signal readout
+   RETRIEVAL LEDGER - ranked signal readout
    ======================================== */
 .retrieval-lab-grid {
   display: grid;
@@ -1571,7 +1571,7 @@ html[data-home-theme='dark'] .retrieval-scenario-tab[data-status='regression'] {
   align-items: start;
 }
 
-/* Left column — query + ranked list */
+/* Left column - query + ranked list */
 .retrieval-ledger {
   display: flex;
   flex-direction: column;
@@ -1787,7 +1787,7 @@ html[data-home-theme='dark'] .retrieval-scenario-tab[data-status='regression'] {
   font-size: 0.8rem;
 }
 
-/* Right column — live readout */
+/* Right column - live readout */
 .retrieval-readout {
   display: grid;
   align-content: start;
@@ -2920,7 +2920,7 @@ html[data-home-theme='dark'] .home-footer-icon-stroke {
   }
 }
 
-/* Crosshair cursor — registration mark, adaptive via difference blend */
+/* Crosshair cursor - registration mark, adaptive via difference blend */
 .cursor-dot {
   position: fixed;
   top: 0;

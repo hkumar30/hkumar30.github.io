@@ -7,7 +7,7 @@ export const workExperience: WorkExperienceItem[] = [
     company: 'Mindspark',
     companyLogo: '/images/mindspark-logo.png',
     location: 'Remote',
-    period: 'Aug 2025 – Present',
+    period: 'Aug 2025 - Present',
     highlights: [
       'Engineered a zero-downtime production data migration for the Kairos Aurora PostgreSQL database with 0 deltas across 18 tables.',
       'Built and refined prompts used by six different OpenAI models, raising system reliability to 95%.',
@@ -22,7 +22,7 @@ export const workExperience: WorkExperienceItem[] = [
     company: 'Velocity Tech Inc.',
     companyLogo: '/images/velocity-tech-logo.png',
     location: 'Remote',
-    period: 'Jan 2024 – Dec 2024',
+    period: 'Jan 2024 - Dec 2024',
     highlights: [
       'Delivered ERP Contract Management System to streamline contractor hiring pipeline.',
       'Automated resume parsing with Express + OpenAI API, reducing manual data entry by 60%.',
@@ -38,9 +38,9 @@ export const education: EducationItem[] = [
     logo: '/images/ASU-logo.png',
     degree: 'Bachelor of Science in Computer Science',
     gpa: '4.0',
-    period: 'Aug 2021 – May 2025',
+    period: 'Aug 2021 - May 2025',
     location: 'Tempe, AZ',
-    highlights: ['Moeur Award Recipient', "Dean's List — eight consecutive semesters"],
+    highlights: ['Moeur Award Recipient', "Dean's List - eight consecutive semesters"],
   },
 ];
 

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const fieldNotes = [
   {
     title: 'On Retrieval Augmentation',
-    body: 'The best RAG systems do not retrieve more — they retrieve better.',
+    body: 'The best RAG systems do not retrieve more - they retrieve better.',
   },
   {
     title: 'On Vector Search',
