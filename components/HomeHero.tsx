@@ -108,11 +108,11 @@ export default function HomeHero() {
 
         <CompactNav />
 
-        <div className="home-hero-meta-boxed">
+        {/* <div className="home-hero-meta-boxed">
           <p className="home-hero-tagline">
             Systems that ship reliably, fail gracefully
           </p>
-        </div>
+        </div> */}
 
         <p className="home-hero-meta">
           <span>{heroContent.location.toUpperCase()}</span>
