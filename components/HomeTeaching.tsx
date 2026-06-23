@@ -26,7 +26,7 @@ export default function HomeTeaching({ spotifyTrack }: HomeTeachingProps) {
           <p className="home-teaching-intro">{teachingIntro}</p>
         </div>
 
-        {/* Teaching Items — Cartesian Grid Cards */}
+        {/* Teaching Items - Cartesian Grid Cards */}
         <div className="teaching-grid">
           {teachingItems.map((item, index) => (
             <motion.article
@@ -41,7 +41,7 @@ export default function HomeTeaching({ spotifyTrack }: HomeTeachingProps) {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              {/* Logo at top — swaps to a brand-approved variant in blue/dark mode */}
+              {/* Logo at top - swaps to a brand-approved variant in blue/dark mode */}
               <div className="teaching-card-logo">
                 <Image
                   src={item.logo}

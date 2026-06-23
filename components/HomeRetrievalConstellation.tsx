@@ -67,7 +67,7 @@ export default function HomeRetrievalConstellation() {
         </p>
       </div>
 
-      {/* Step 1 — pick a scenario */}
+      {/* Step 1 - pick a scenario */}
       <div className="retrieval-steps">
         <p className="retrieval-step-label">
           <span className="retrieval-step-num">1</span> Pick a scenario
@@ -97,7 +97,7 @@ export default function HomeRetrievalConstellation() {
       </div>
 
       <div className="retrieval-lab-grid">
-        {/* Left — the ranked ledger */}
+        {/* Left - the ranked ledger */}
         <div className="retrieval-ledger">
           <div className="retrieval-query">
             <span className="retrieval-query-label">Query</span>
@@ -108,7 +108,7 @@ export default function HomeRetrievalConstellation() {
             <div className="retrieval-ranklist-head">
               <span className="retrieval-ranklist-title">
                 <span className="retrieval-step-num">2</span>
-                Retrieved signals — click to inspect
+                Retrieved signals - click to inspect
               </span>
               <span className="retrieval-ranklist-unit">Weight</span>
             </div>
@@ -155,14 +155,14 @@ export default function HomeRetrievalConstellation() {
 
             {topIsRisk && (
               <p className="retrieval-ledger-flag">
-                Highest-weighted signal is a risk source — ranking alone would
+                Highest-weighted signal is a risk source - ranking alone would
                 ship the wrong answer.
               </p>
             )}
           </div>
         </div>
 
-        {/* Right — live readout */}
+        {/* Right - live readout */}
         <aside className="retrieval-readout" aria-live="polite">
           <div className="retrieval-readout-status">
             <span className="retrieval-status-badge">{scenario.status}</span>

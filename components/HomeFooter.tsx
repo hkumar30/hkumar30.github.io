@@ -45,7 +45,7 @@ export default function HomeFooter() {
           transition={{ duration: 0.6 }}
         >
           <p>&ldquo;I care more about how things break than how they look in the demo.&rdquo;</p>
-          <cite>— from the monologue you just read</cite>
+          <cite>- from the monologue you just read</cite>
         </motion.blockquote>
         
         <div className="footer-links">

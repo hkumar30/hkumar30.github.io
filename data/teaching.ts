@@ -18,7 +18,7 @@ export const teachingItems: TeachingItem[] = [
   {
     role: 'Section Leader',
     organization: 'Stanford Code in Place',
-    period: '2025 — 2026',
+    period: '2025 - 2026',
     description:
       'Led a 10-15 student remote section for Stanford Code in Place, walking Python from problem statement to readable code. The work was less about perfect syntax and more about making errors feel traceable, fixable, and ordinary.',
     logo: '/images/stanford-logo.svg',
@@ -29,9 +29,9 @@ export const teachingItems: TeachingItem[] = [
   {
     role: 'Technical Development Director',
     organization: 'Software Developers Association (SoDA), ASU',
-    period: '2021 — 2022',
+    period: '2021 - 2022',
     description:
-      'As Technical Development Director for SoDA, I helped lead the technical programming and ran weekly workshops for the ASU community. Competitive programming, web dev, interview prep, tooling, beginner CS — the room mattered because learning felt easier when people showed up together.',
+      'As Technical Development Director for SoDA, I helped lead the technical programming and ran weekly workshops for the ASU community. Competitive programming, web dev, interview prep, tooling, beginner CS - the room mattered because learning felt easier when people showed up together.',
     logo: '/images/asu-logo.svg',
     logoDark: '/images/asu-logo-dark.svg',
     logoAlt: 'Arizona State University logo',
