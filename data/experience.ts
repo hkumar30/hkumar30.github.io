@@ -7,7 +7,7 @@ export const workExperience: WorkExperienceItem[] = [
     company: 'Mindspark',
     companyLogo: '/images/mindspark-logo.png',
     location: 'Remote',
-    period: 'Aug 2025 - Present',
+    period: 'Aug 2025 - Jul 2026',
     highlights: [
       'Engineered a zero-downtime production data migration for the Kairos Aurora PostgreSQL database with 0 deltas across 18 tables.',
       'Built and refined prompts used by six different OpenAI models, raising system reliability to 95%.',

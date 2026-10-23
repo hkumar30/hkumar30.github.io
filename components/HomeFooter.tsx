@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { profile, socialLinks } from '@/data/profile';
 
@@ -31,23 +30,12 @@ const footerIcons: Record<string, JSX.Element> = {
 
 export default function HomeFooter() {
   const currentYear = new Date().getFullYear();
-  
+
   return (
     <footer className="home-footer-closing" data-cursor-accent="--signature-blue" aria-label="Footer">
       <span className="section-marker is-right">अंत</span>
-      
+
       <div className="footer-closing-content">
-        <motion.blockquote 
-          className="footer-quote"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <p>&ldquo;I care more about how things break than how they look in the demo.&rdquo;</p>
-          <cite>- from the monologue you just read</cite>
-        </motion.blockquote>
-        
         <div className="footer-links">
           {socialLinks.map((link) => (
             <Link
@@ -70,7 +58,7 @@ export default function HomeFooter() {
           </Link>
         </div>
       </div>
-      
+
       <div className="footer-copyright">
         <p>© {currentYear} {profile.name}. All rights reserved.</p>
         <p className="footer-credits">
