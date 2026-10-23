@@ -14,35 +14,23 @@ function isActivePath(pathname: string, href: string) {
 export default function Nav() {
   const pathname = usePathname() ?? '/';
   const [open, setOpen] = useState(false);
-  const [showNav, setShowNav] = useState(pathname !== '/');
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
   const drawerNavRef = useRef<HTMLElement | null>(null);
-  const wasDrawerVisible = useRef(false);
-  const isDrawerVisible = open && showNav;
+  const wasOpen = useRef(false);
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    if (pathname === '/') {
-      setShowNav(false);
-      setOpen(false);
-      return;
-    }
-
-    setShowNav(true);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (wasDrawerVisible.current && !isDrawerVisible && showNav) {
+    if (wasOpen.current && !open) {
       menuButtonRef.current?.focus();
     }
-    wasDrawerVisible.current = isDrawerVisible;
-  }, [isDrawerVisible, showNav]);
+    wasOpen.current = open;
+  }, [open]);
 
   useEffect(() => {
-    if (!isDrawerVisible) {
+    if (!open) {
       document.body.style.overflow = '';
       return;
     }
@@ -56,54 +44,54 @@ export default function Nav() {
       document.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = '';
     };
-  }, [isDrawerVisible]);
+  }, [open]);
 
   if (pathname === '/') return null;
 
   return (
     <>
-      <header
-        className={`site-nav ${pathname === '/' ? 'site-nav-on-home' : ''} ${
-          showNav ? 'is-visible' : ''
-        }`}
-      >
+      <header className="site-nav">
         <div className="site-nav-inner">
           <Link href="/" className="site-logo" aria-label="Home">
             <HKLogo className="hk-logo-nav" />
           </Link>
 
-          {/* Desktop: inline links, no drawer */}
           <nav className="site-nav-links-desktop" aria-label="Primary navigation">
-            {navItems.map((item) => {
+            {navItems.map((item, index) => {
               const active = isActivePath(pathname, item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={active ? 'active-nav-link' : ''}
+                  className={`site-nav-link ${active ? 'is-active' : ''}`}
                   aria-current={active ? 'page' : undefined}
                 >
-                  {item.label}
+                  <span className="site-nav-num" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="site-nav-label">{item.label}</span>
+                  <span className="site-nav-hi font-hindi" lang="hi" aria-hidden="true">
+                    {item.labelHi}
+                  </span>
                 </Link>
               );
             })}
           </nav>
 
-          {/* Mobile: toggle for drawer */}
           <button
             ref={menuButtonRef}
             type="button"
             className="menu-toggle-mobile"
-            aria-expanded={isDrawerVisible}
+            aria-expanded={open}
             aria-controls="global-nav-drawer"
             onClick={() => setOpen((prev) => !prev)}
           >
-            {isDrawerVisible ? 'Close' : 'Menu'}
+            {open ? 'Close' : 'Menu'}
           </button>
         </div>
       </header>
 
-      {isDrawerVisible ? (
+      {open ? (
         <>
           <div className="menu-overlay open" onClick={() => setOpen(false)} />
           <aside
@@ -112,17 +100,23 @@ export default function Nav() {
             aria-label="Global navigation"
           >
             <nav ref={drawerNavRef} className="menu-drawer-nav" aria-label="Primary navigation">
-              {navItems.map((item) => {
+              {navItems.map((item, index) => {
                 const active = isActivePath(pathname, item.href);
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`menu-drawer-link ${active ? 'active-nav-link' : ''}`}
+                    className={`menu-drawer-link ${active ? 'is-active' : ''}`}
                     aria-current={active ? 'page' : undefined}
                     onClick={() => setOpen(false)}
                   >
-                    {item.label}
+                    <span className="menu-drawer-num" aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="menu-drawer-label">{item.label}</span>
+                    <span className="menu-drawer-hi font-hindi" lang="hi" aria-hidden="true">
+                      {item.labelHi}
+                    </span>
                   </Link>
                 );
               })}
