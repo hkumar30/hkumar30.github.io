@@ -45,6 +45,70 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Libron';
+  src: url('/fonts/Libron-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libron';
+  src: url('/fonts/Libron-Italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libron';
+  src: url('/fonts/Libron-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libron';
+  src: url('/fonts/Libron-BoldItalic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noticia Text';
+  src: url('/fonts/NoticiaText-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noticia Text';
+  src: url('/fonts/NoticiaText-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noticia Text';
+  src: url('/fonts/NoticiaText-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noticia Text';
+  src: url('/fonts/NoticiaText-BoldItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -1199,8 +1263,18 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   }
 }
 
-/* Home monologue section - plain minimal */
+/* Home monologue section - plain, warm, a little whimsical */
 .home-monologue {
+  --mono-paper: var(--home-paper);
+  --mono-ink: var(--home-ink);
+  /* Warm paper wants warm emphasis — not signature blue */
+  --mono-emphasis: var(--rust);
+  --mono-arrow: var(--sepia);
+  --mono-newsprint: hsl(40 12% 92%);
+  --mono-newsprint-ink: #2a241c;
+  --mono-frame: color-mix(in srgb, var(--home-ink) 12%, transparent);
+  --mono-border: color-mix(in srgb, var(--home-ink) 18%, transparent);
+  --mono-copy-border: color-mix(in srgb, var(--home-ink) 28%, transparent);
   position: relative;
   min-height: 100svh;
   height: auto;
@@ -1208,8 +1282,16 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   place-items: center;
   padding: clamp(3rem, 8vw, 6rem);
   overflow: visible;
-  background: var(--home-paper);
-  color: var(--home-ink);
+  background: var(--mono-paper);
+  color: var(--mono-ink);
+}
+
+html[data-home-theme='dark'] .home-monologue {
+  --mono-emphasis: var(--cream);
+  --mono-arrow: var(--mist);
+  --mono-frame: color-mix(in srgb, var(--home-ink) 14%, transparent);
+  --mono-border: color-mix(in srgb, var(--home-ink) 22%, transparent);
+  --mono-copy-border: color-mix(in srgb, var(--home-ink) 32%, transparent);
 }
 
 /* Crosshair grid frame echoing the Spotify registration box */
@@ -1225,8 +1307,8 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(color-mix(in srgb, var(--home-ink) 16%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--home-ink) 16%, transparent) 1px, transparent 1px);
+    linear-gradient(var(--mono-frame) 1px, transparent 1px),
+    linear-gradient(90deg, var(--mono-frame) 1px, transparent 1px);
   background-position: center;
   background-size: 50% 50%;
   pointer-events: none;
@@ -1236,7 +1318,7 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   content: '';
   position: absolute;
   inset: clamp(0.7rem, 2vw, 1.3rem);
-  border: 1px solid color-mix(in srgb, var(--home-ink) 26%, transparent);
+  border: 1px solid var(--mono-border);
   pointer-events: none;
 }
 
@@ -1248,66 +1330,73 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.35rem;
+  gap: 1.45rem;
   padding: clamp(1.5rem, 3.5vw, 2.5rem);
-  background: var(--home-paper);
-  border: 1px solid color-mix(in srgb, var(--home-ink) 42%, transparent);
+  background: var(--mono-paper);
+  border: 1px solid var(--mono-copy-border);
   pointer-events: auto;
 }
 
-/* Editorial monologue blocks - enlarged typography */
+/* Body: Libron — direct and readable */
 .home-monologue-block {
-  font-family: "neue-haas-grotesk-text", 'NeueMontreal', sans-serif;
+  font-family: 'Libron', Georgia, 'Times New Roman', serif;
   font-size: clamp(1rem, 1.85vw, 1.4rem);
   font-weight: 400;
-  line-height: 1.5;
-  color: var(--home-ink);
+  line-height: 1.55;
+  color: var(--mono-ink);
   margin: 0;
   letter-spacing: -0.01em;
 }
 
-/* Strikethrough style - greyed out with line through */
-.home-monologue-strike {
-  text-decoration: line-through;
-  opacity: 0.45;
-  color: color-mix(in srgb, var(--home-ink) 55%, transparent);
+/* Kid story: Noticia on a newsprint strip — no italic */
+.home-monologue-story {
+  font-family: 'Noticia Text', Georgia, 'Times New Roman', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.02em;
+  line-height: 1.55;
+  letter-spacing: 0;
+  color: var(--mono-newsprint-ink);
+  background-color: var(--mono-newsprint);
+  background-image: var(--mono-newsprint-texture, none);
+  background-size: 600px 800px;
+  background-repeat: repeat;
+  padding: 0.75em 1em;
+  margin: 0;
+  width: fit-content;
+  max-width: 100%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
-/* Highlight/strong terms - signature blue with Garamond italic */
+/* List lead: Faculty Glyphic — a quiet wink before the facts */
+.home-monologue-list-lead {
+  margin: 0;
+  font-family: 'Faculty Glyphic', 'Libron', Georgia, serif;
+  font-size: 0.92em;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--mono-ink);
+}
+
+/* Highlights: same Libron face, bold + underline, no italic */
 .home-monologue-strong {
-  font-weight: 500;
-  color: var(--home-highlight);
-  font-family: var(--font-garamond), 'EB Garamond', Georgia, serif;
-  font-style: italic;
-  font-size: 1.08em;
-}
-
-/* Asterisk footnote markers */
-.home-monologue-asterisk {
-  color: var(--home-accent);
+  font-family: 'Libron', Georgia, 'Times New Roman', serif;
   font-weight: 700;
-  font-family: var(--font-garamond), 'EB Garamond', Georgia, serif;
-  vertical-align: super;
-  font-size: 0.7em;
-  margin-left: 0.08em;
+  font-style: normal;
+  font-size: 1em;
+  color: var(--mono-emphasis);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, var(--mono-emphasis) 55%, transparent);
 }
 
-/* Footnote text */
-.home-monologue-footnote {
-  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
-  color: var(--home-muted);
-  font-style: italic;
-  font-family: var(--font-garamond), 'EB Garamond', Georgia, serif;
-  margin: -0.75rem 0 0;
-  padding-left: 1.25rem;
-  border-left: 3px solid color-mix(in srgb, var(--home-accent) 25%, transparent);
-}
-
-/* List of expertise items */
+/* List of work items — back to Libron for clarity */
 .home-monologue-list {
   list-style: none;
   padding: 0;
-  margin: 1rem 0 0;
+  margin: 0.85rem 0 0;
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
@@ -1317,29 +1406,21 @@ html[data-home-theme='dark'] .home-theme-toggle:focus-visible {
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
+  font-family: 'Libron', Georgia, 'Times New Roman', serif;
   font-size: 0.95em;
 }
 
 .home-monologue-list-item::before {
-  content: "→";
-  color: var(--home-accent);
+  content: '→';
+  color: var(--mono-arrow);
   font-weight: 700;
   font-size: 0.85em;
-}
-
-.home-monologue-list-note {
-  color: var(--home-muted);
-  font-size: 0.9em;
-  font-style: italic;
-  margin-left: 0.3rem;
-  font-family: var(--font-garamond), 'EB Garamond', Georgia, serif;
+  font-family: 'Libron', Georgia, 'Times New Roman', serif;
 }
 
 /* Closing line */
 .home-monologue-closing {
-  margin-top: 0.75rem;
-  font-size: 1.08em;
-  font-weight: 500;
+  margin-top: 0.5rem;
 }
 
 /* Retrieval constellation */
@@ -2849,15 +2930,6 @@ html[data-home-theme='dark'] .home-footer-icon-stroke {
     gap: 0.35rem;
   }
 
-  .home-monologue-footnote {
-    font-size: 0.75em;
-    padding-left: 0.75rem;
-  }
-
-  .home-monologue-closing {
-    font-size: 1.02em;
-  }
-
   .retrieval-constellation {
     min-height: auto;
     padding: 4.5rem 1.25rem 4.5rem;
@@ -3837,27 +3909,6 @@ html[data-home-theme='dark'] .spotify-card:hover .spotify-card-vinyl {
   display: grid;
   gap: 3rem;
   text-align: center;
-}
-
-.footer-quote {
-  margin: 0;
-}
-
-.footer-quote p {
-  margin: 0 0 0.75rem;
-  font-family: var(--font-garamond), 'EB Garamond', Georgia, serif;
-  font-size: clamp(1.35rem, 3vw, 1.85rem);
-  font-style: italic;
-  line-height: 1.4;
-  color: var(--home-ink);
-}
-
-.footer-quote cite {
-  font-family: "neue-haas-grotesk-text", 'NeueMontreal', sans-serif;
-  font-size: 0.8rem;
-  font-style: normal;
-  color: var(--home-muted);
-  letter-spacing: 0.05em;
 }
 
 .footer-links {

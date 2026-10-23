@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { profile } from '@/data/profile';
-import PhoenixDateTime from '@/components/PhoenixDateTime';
+import HeroDateTime from '@/components/HeroDateTime';
 import CompactNav from '@/components/CompactNav';
 import { heroContent, navItems } from '@/data/siteContent';
 
@@ -115,8 +115,7 @@ export default function HomeHero() {
         </div> */}
 
         <p className="home-hero-meta">
-          <span>{heroContent.location.toUpperCase()}</span>
-          <PhoenixDateTime />
+          <HeroDateTime />
         </p>
       </div>
 

@@ -14,7 +14,6 @@ export const navItems: NavItem[] = [
 export const heroContent = {
   intro:
     'Building production RAG systems that ship reliably, fail gracefully, and behave predictably under real load.',
-  location: 'Redmond, WA',
 };
 
 export const retrievalConstellation = {

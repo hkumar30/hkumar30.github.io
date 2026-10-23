@@ -2,22 +2,23 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
+const TIME_ZONE = 'Asia/Kolkata';
+
 const DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'America/Los_Angeles',
+  timeZone: TIME_ZONE,
   month: 'short',
   day: 'numeric',
   year: 'numeric',
 });
 
 const TIME_FORMATTER = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'America/Los_Angeles',
+  timeZone: TIME_ZONE,
   hour: 'numeric',
   minute: '2-digit',
   hour12: true,
-  timeZoneName: 'short',
 });
 
-export default function PhoenixDateTime() {
+export default function HeroDateTime() {
   const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function PhoenixDateTime() {
 
     return {
       date: DATE_FORMATTER.format(now).toUpperCase(),
-      time: TIME_FORMATTER.format(now).toUpperCase(),
+      time: `${TIME_FORMATTER.format(now).toUpperCase()} IST`,
     };
   }, [now]);
 
