@@ -132,7 +132,7 @@ Options:
 Examples:
   npm run screenshot                    # Hero desktop + mobile
   npm run screenshot:hero               # Same as above
-  npm run screenshot -- --route=/lab --viewport=mobile
+  npm run screenshot -- --route=/work --viewport=mobile
   npm run screenshot -- --routes=/,/projects --viewports=desktop,mobile,tablet
   npm run screenshot -- --fullpage --wait-for=\"#teaching-section\"
   npm run screenshot:all                # All routes at all viewports
